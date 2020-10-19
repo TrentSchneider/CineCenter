@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 
 // returns the a card for each user with their information filled in
-function Card(props) {
+function DropMenu(props) {
   return (
     <div id="accordion">
       <div class="card">
@@ -27,7 +27,7 @@ function Card(props) {
           data-parent="#accordion"
         >
           <div class="card-body">
-            <ul>
+            <ul className="dmen">
               <li>Link 1</li>
               <li>Link 1</li>
               <li>Link 1</li>
@@ -39,4 +39,4 @@ function Card(props) {
   );
 }
 
-export default Card;
+export default DropMenu;
