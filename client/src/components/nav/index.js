@@ -5,11 +5,11 @@ import "./style.css";
 function DropMenu(props) {
   return (
     <div id="accordion">
-      <div class="card">
-        <div class="card-header" id="headingOne">
-          <h5 class="mb-0">
+      <div className="card">
+        <div className="card-header" id="headingOne">
+          <h5 className="mb-0">
             <button
-              class="btn btn-link"
+              className="btn btn-link"
               data-toggle="collapse"
               data-target="#collapseOne"
               aria-expanded="true"
@@ -22,11 +22,11 @@ function DropMenu(props) {
 
         <div
           id="collapseOne"
-          class="collapse show"
+          className="collapse show"
           aria-labelledby="headingOne"
           data-parent="#accordion"
         >
-          <div class="card-body">
+          <div className="card-body">
             <ul className="dmen">
               <li>Link 1</li>
               <li>Link 1</li>
