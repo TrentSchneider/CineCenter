@@ -3,7 +3,7 @@ const User = require("../models");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
-// passport.use(
+passport.use(
   new LocalStrategy(
     // Set up using email address to sign in instead of username
     {
