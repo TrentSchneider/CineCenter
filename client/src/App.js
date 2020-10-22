@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
+import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Nav from "./components/Nav";
@@ -8,24 +9,27 @@ import Home from "./pages/Home";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import WatchList from "./pages/WatchList";
+import API from "./utils/API"
 
 function App() {
+  const [data, setData] = useState(null);
+  
   return (
     <Router>
       <Header />
-      <Nav />
+      <Nav data={data} />
       <Switch>
         <Route exact path={["/", "/home"]}>
-          <Home />
+          <Home getUser={API.getUser} data={data} />
         </Route>
         <Route exact path="/login">
-          <LogIn />
+          <LogIn login={API.login} getUser={API.getUser} />
         </Route>
         <Route exact path="/signup">
-          <SignUp />
+          <SignUp register={API.register} getUser={API.getUser} />
         </Route>
         <Route exact path="/watchlist">
-          <WatchList />
+          <WatchList getUser={API.getUser} />
         </Route>
       </Switch>
       <Footer />
