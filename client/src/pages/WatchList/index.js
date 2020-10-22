@@ -1,6 +1,6 @@
 import React from "react";
 
-function WatchList() {
+function WatchList(props) {
   return <div className="card"></div>;
 }
 
