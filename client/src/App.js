@@ -9,27 +9,31 @@ import Home from "./pages/Home";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import WatchList from "./pages/WatchList";
-import API from "./utils/API"
+import API from "./utils/API";
 
 function App() {
   const [data, setData] = useState(null);
-  
+
   return (
     <Router>
       <Header />
       <Nav data={data} />
       <Switch>
         <Route exact path={["/", "/home"]}>
-          <Home getUser={API.getUser} data={data} />
+          <Home getUser={API.getUser} data={data} setData={setData} />
         </Route>
         <Route exact path="/login">
-          <LogIn login={API.login} getUser={API.getUser} />
+          <LogIn login={API.login} getUser={API.getUser} setData={setData} />
         </Route>
         <Route exact path="/signup">
-          <SignUp register={API.register} getUser={API.getUser} />
+          <SignUp
+            register={API.register}
+            getUser={API.getUser}
+            setData={setData}
+          />
         </Route>
         <Route exact path="/watchlist">
-          <WatchList getUser={API.getUser} />
+          <WatchList getUser={API.getUser} setData={setData} />
         </Route>
       </Switch>
       <Footer />
