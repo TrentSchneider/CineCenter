@@ -4,7 +4,7 @@ import "./style.css";
 // returns the a card for each user with their information filled in
 function DropMenu(props) {
   return (
-    <div id="accordion">
+    <div id="accordion" className="col-1">
       <div className="card">
         <div className="card-header" id="headingOne">
           <h5 className="mb-0">
@@ -28,9 +28,14 @@ function DropMenu(props) {
         >
           <div className="card-body">
             <ul className="dmen">
-              <li>Link 1</li>
-              <li>Link 1</li>
-              <li>Link 1</li>
+              <li>
+                <a href="/home">Home</a>
+              </li>
+              <li>
+                <a href="/api/logout" onClick={props.handleLogoutClick()}>
+                  Log Out
+                </a>
+              </li>
             </ul>
           </div>
         </div>
