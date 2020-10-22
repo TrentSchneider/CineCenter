@@ -25,10 +25,11 @@ export default {
     });
   },
   getUser: function () {
-    axios({
+     return axios({
       method: "GET",
       withCredentials: true,
       url: process.env.PUBLIC_URL + "/api/user"
-    }).then(res => setData(res.data));
+    });
+    ;
   }
 };
