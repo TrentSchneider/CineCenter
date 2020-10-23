@@ -18,7 +18,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-require("./config/passport")(passport);
+require("./config/passport");
 
 // Add routes, both API and view
 app.use(routes);
