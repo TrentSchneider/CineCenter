@@ -3,11 +3,11 @@ import React from "react";
 function LogIn(props) {
 
   return (
-    <div class="container">
+    <div className="container">
       <div className="card">
         <form className="login">
           <div className="form-group">
-            <label for="exampleInputEmail1">Email address</label>
+            <label htmlFor="exampleInputEmail1">Email address</label>
             <input
               type="email"
               className="form-control"
@@ -16,8 +16,8 @@ function LogIn(props) {
               onChange={e => props.setLoginEmail(e.target.value)}
             />
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
+          <div className="form-group">
+            <label htmlFor="exampleInputPassword1">Password</label>
             <input
               type="password"
               className="form-control"
