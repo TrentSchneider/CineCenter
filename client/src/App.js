@@ -26,6 +26,8 @@ function App() {
   function handleLoginClick() {
     API.login(loginEmail, loginPassword);
     setIsLoggedIn(true);
+    window.location.replace(process.env.PUBLIC_URL + "/home");
+    console.log("login success");
   }
   function handleRegisterClick() {
     API.register(registerUsername, registerEmail, registerPassword).then(
@@ -35,19 +37,24 @@ function App() {
   }
 
   if (isLoggedIn) {
-    API.getUser().then(res => setData(res.data));
+    API.getUser().then(res => {
+      setData(res.data);
+      console.log("retrieved user data");
+    });
     return (
       <Router>
         <Header data={data} />
         <SignedInNav handleLogoutClick={handleLogoutClick} />
-        <Switch>
-          <Route exact path={["/", "/home"]}>
-            <Home />
-          </Route>
-          <Route exact path="/watchlist">
-            <WatchList data={data} />
-          </Route>
-        </Switch>
+        <div className="layer">
+          <Switch>
+            <Route exact path={["/", "/home"]}>
+              <Home data={data} />
+            </Route>
+            <Route exact path="/watchlist">
+              <WatchList data={data} />
+            </Route>
+          </Switch>
+        </div>
         <Footer />
       </Router>
     );
@@ -56,26 +63,28 @@ function App() {
       <Router>
         <Header />
         <SignedOutNav />
-        <Switch>
-          <Route exact path={["/", "/home"]}>
-            <Home />
-          </Route>
-          <Route exact path="/login">
-            <LogIn
-              handleLoginClick={handleLoginClick}
-              setLoginEmail={setLoginEmail}
-              setLoginPassword={setLoginPassword}
-            />
-          </Route>
-          <Route exact path="/signup">
-            <SignUp
-              handleRegisterClick={handleRegisterClick}
-              setRegisterUsername={setRegisterUsername}
-              setRegisterEmail={setRegisterEmail}
-              setRegisterPassword={setRegisterPassword}
-            />
-          </Route>
-        </Switch>
+        <div className="layer">
+          <Switch>
+            <Route exact path={["/", "/home"]}>
+              <Home />
+            </Route>
+            <Route exact path="/login">
+              <LogIn
+                handleLoginClick={handleLoginClick}
+                setLoginEmail={setLoginEmail}
+                setLoginPassword={setLoginPassword}
+              />
+            </Route>
+            <Route exact path="/signup">
+              <SignUp
+                handleRegisterClick={handleRegisterClick}
+                setRegisterUsername={setRegisterUsername}
+                setRegisterEmail={setRegisterEmail}
+                setRegisterPassword={setRegisterPassword}
+              />
+            </Route>
+          </Switch>
+        </div>
         <Footer />
       </Router>
     );
