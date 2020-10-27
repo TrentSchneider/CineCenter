@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
@@ -9,37 +9,59 @@ import Home from "./pages/Home";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import WatchList from "./pages/WatchList";
+import MovieSearch from "./pages/MovieSearch";
 import API from "./utils/API";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [data, setData] = useState(null);
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState("test@test.com");
+  const [loginPassword, setLoginPassword] = useState("password");
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  const [searchMovie, setSearchMovie] = useState("the+lion+king");
+
+  useEffect(() => {
+    // window.location.replace(process.env.PUBLIC_URL + "/home");
+  }, [isLoggedIn]);
 
   function handleLogoutClick() {
     setIsLoggedIn(false);
   }
-  function handleLoginClick() {
-    API.login(loginEmail, loginPassword);
-    setIsLoggedIn(true);
-    window.location.replace(process.env.PUBLIC_URL + "/home");
-    console.log("login success");
+  function handleLoginClick(event) {
+    event.preventDefault();
+    API.login(loginEmail, loginPassword).then(res => {
+      setIsLoggedIn(true);
+    });
   }
-  function handleRegisterClick() {
-    API.register(registerUsername, registerEmail, registerPassword).then(
-      API.login(registerEmail, registerPassword)
-    );
-    setIsLoggedIn(true);
+  function handleRegisterClick(event) {
+    event.preventDefault();
+    API.register(registerUsername, registerEmail, registerPassword).then(() => {
+      API.login(registerEmail, registerPassword).then(() => {
+        setIsLoggedIn(true);
+      });
+    });
+  }
+
+  function handleSearchClick(event) {
+    event.preventDefault();
+    API.searchMovie(searchMovie)
+      .then(res => {
+        console.log("movie search data", res.data);
+        console.log("year", res.data.Year);
+        setSearchResult(res.data);
+        console.log("searchResult", searchResult);
+      })
+      .catch(err => console.log("err", err));
   }
 
   if (isLoggedIn) {
+    console.log("is logged in", isLoggedIn);
+
     API.getUser().then(res => {
       setData(res.data);
-      console.log("retrieved user data");
     });
     return (
       <Router>
@@ -54,11 +76,19 @@ function App() {
               <WatchList data={data} />
             </Route>
           </Switch>
+          <Route exact path="/moviesearch">
+            <MovieSearch
+              searchResult={searchResult}
+              setSearchMovie={setSearchMovie}
+              handleSearchClick={handleSearchClick}
+            />
+          </Route>
         </div>
         <Footer />
       </Router>
     );
   } else {
+    console.log("is logged in", isLoggedIn);
     return (
       <Router>
         <Header />
@@ -81,6 +111,13 @@ function App() {
                 setRegisterUsername={setRegisterUsername}
                 setRegisterEmail={setRegisterEmail}
                 setRegisterPassword={setRegisterPassword}
+              />
+            </Route>
+            <Route exact path="/moviesearch">
+              <MovieSearch
+                searchResult={searchResult}
+                setSearchMovie={setSearchMovie}
+                handleSearchClick={handleSearchClick}
               />
             </Route>
           </Switch>
