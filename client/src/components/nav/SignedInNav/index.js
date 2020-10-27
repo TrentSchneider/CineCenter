@@ -32,7 +32,13 @@ function DropMenu(props) {
                 <a href="/home">Home</a>
               </li>
               <li>
-                <a href="/api/logout" onClick={props.handleLogoutClick()}>
+                <a href="/moviesearch">Movie Search</a>
+              </li>
+              <li>
+                <a href="/watchlist">Movie Lists</a>
+              </li>
+              <li>
+                <a href="/api/logout" onClick={() => props.handleLogoutClick()}>
                   Log Out
                 </a>
               </li>
