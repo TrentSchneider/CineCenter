@@ -4,13 +4,16 @@ import "./style.css";
 function DropMenu(props) {
   return (
     <div className="card dmen col-1 p-0">
-      <button type="button" class="card-header collapsible">
+      <button type="button" className="card-header collapsible">
         Menu
       </button>
-      <div class="card-body content">
+      <div className="card-body content">
         <ul className="p-0">
           <li>
             <a href="/home">Home</a>
+          </li>
+          <li>
+            <a href="/moviesearch">Movie Search</a>
           </li>
           <li>
             <a href="/login">Sign In</a>
