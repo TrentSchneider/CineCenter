@@ -10,18 +10,19 @@ import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import WatchList from "./pages/WatchList";
 import MovieSearch from "./pages/MovieSearch";
+import MovieInfo from "./pages/MovieInfo"
 import API from "./utils/API";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [data, setData] = useState(null);
-  const [loginEmail, setLoginEmail] = useState("test@test.com");
-  const [loginPassword, setLoginPassword] = useState("password");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-  const [searchMovie, setSearchMovie] = useState("the+lion+king");
+  const [searchMovie, setSearchMovie] = useState("");
 
   useEffect(() => {
     // window.location.replace(process.env.PUBLIC_URL + "/home");
@@ -49,10 +50,7 @@ function App() {
     event.preventDefault();
     API.searchMovie(searchMovie)
       .then(res => {
-        console.log("movie search data", res.data);
-        console.log("year", res.data.Year);
         setSearchResult(res.data);
-        console.log("searchResult", searchResult);
       })
       .catch(err => console.log("err", err));
   }
@@ -119,6 +117,9 @@ function App() {
                 setSearchMovie={setSearchMovie}
                 handleSearchClick={handleSearchClick}
               />
+            </Route>
+            <Route exact path="/movie">
+              <MovieInfo searchResult={searchResult} />
             </Route>
           </Switch>
         </div>
