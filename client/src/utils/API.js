@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export default {
-  register: function (registerEmail, registerUsername, registerPassword) {
-    axios({
+  register: function (registerUsername, registerEmail, registerPassword) {
+    return axios({
       method: "POST",
       data: {
         email: registerEmail,
@@ -10,26 +10,32 @@ export default {
         password: registerPassword
       },
       withCredentials: true,
-      url: process.env.PUBLIC_URL + "/api/signup"
+      url: "/api/signup"
     });
   },
   login: function (loginEmail, loginPassword) {
-    axios({
+    return axios({
       method: "POST",
       data: {
         email: loginEmail,
         password: loginPassword
       },
       withCredentials: true,
-      url: process.env.PUBLIC_URL + "/api/login"
+      url: "/api/login"
     });
   },
   getUser: function () {
-     return axios({
+    return axios({
       method: "GET",
       withCredentials: true,
-      url: process.env.PUBLIC_URL + "/api/user"
+      url: "/api/user"
     });
-    ;
+  },
+  searchMovie: function (searchMovie) {
+    let queryURL =
+      "https://www.omdbapi.com/?t=" + searchMovie + "&apikey=trilogy";
+    console.log("----------------");
+    console.log("query url", queryURL);
+    return axios.get(queryURL);
   }
 };
