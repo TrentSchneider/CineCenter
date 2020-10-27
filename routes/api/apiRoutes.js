@@ -2,25 +2,18 @@ const compression = require("compression");
 const express = require("express");
 const router = express.Router();
 const User = require("../../models/user");
-const passport = require("../../config/passport");
+// const passport = require("../../config/passport");
+const passport = require("passport");
 const app = express();
 const bcrypt = require("bcryptjs");
 
-app.use(compression());
+// app.use(compression());
 
-// route for the API login that also uses passport authentication
-router.post("/login", (req, res) => {
-  passport.authenticate("local", (err, user, info) => {
-    if (err) throw err;
-    if (!user) res.send("No User Exists");
-    else {
-      req.logIn(user, err => {
-        if (err) throw err;
-        res.send("Succesfully Authenticated");
-      });
-    }
+router
+  .route("/login")
+  .post(passport.authenticate("local", { session: false }), (req, res) => {
+    res.json(req.user);
   });
-});
 
 // route for API signup
 router.post("/signup", (req, res) => {
@@ -42,6 +35,7 @@ router.post("/signup", (req, res) => {
 
 router.get("/user", (req, res) => {
   res.send(req.user);
+  // res.send("dummy");
 });
 
 // Route for logging user out
@@ -50,4 +44,7 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
+router.get("/dummy", (req, res) => {
+  res.send("dummy");
+});
 module.exports = router;
