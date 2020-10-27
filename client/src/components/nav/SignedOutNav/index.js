@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 function DropMenu(props) {
@@ -10,16 +11,26 @@ function DropMenu(props) {
       <div className="card-body content">
         <ul className="p-0">
           <li>
-            <a href="/home">Home</a>
+            <Link to={{ pathname: "/home", state: { isLoggedIn: true } }}>
+              Home
+            </Link>
           </li>
           <li>
-            <a href="/moviesearch">Movie Search</a>
+            <Link
+              to={{ pathname: "/moviesearch", state: { isLoggedIn: true } }}
+            >
+              Movie Search
+            </Link>
           </li>
           <li>
-            <a href="/login">Sign In</a>
+            <Link to={{ pathname: "/login", state: { isLoggedIn: true } }}>
+              Sign In
+            </Link>
           </li>
           <li>
-            <a href="/signup">Sign Up</a>
+            <Link to={{ pathname: "/signup", state: { isLoggedIn: true } }}>
+              Sign Up
+            </Link>
           </li>
         </ul>
       </div>

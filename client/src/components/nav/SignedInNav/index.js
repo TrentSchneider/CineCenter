@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 
 // returns the a card for each user with their information filled in
@@ -29,18 +30,31 @@ function DropMenu(props) {
           <div className="card-body">
             <ul className="dmen">
               <li>
-                <a href="/home">Home</a>
+                <Link to={{ pathname: "/home", state: { isLoggedIn: true } }}>
+                  Home
+                </Link>
               </li>
               <li>
-                <a href="/moviesearch">Movie Search</a>
+                <Link
+                  to={{ pathname: "/moviesearch", state: { isLoggedIn: true } }}
+                >
+                  Movie Search
+                </Link>
               </li>
               <li>
-                <a href="/watchlist">Movie Lists</a>
+                <Link
+                  to={{ pathname: "/movielist", state: { isLoggedIn: true } }}
+                >
+                  Movie Lists
+                </Link>
               </li>
               <li>
-                <a href="/api/logout" onClick={() => props.handleLogoutClick()}>
-                  Log Out
-                </a>
+                <Link
+                  to={{ pathname: "/api/logout", state: { isLoggedIn: true } }}
+                  onClick={() => props.handleLogoutClick()}
+                >
+                  Lougout
+                </Link>
               </li>
             </ul>
           </div>
