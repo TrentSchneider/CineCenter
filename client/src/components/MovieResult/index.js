@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function MovieResult(props) {
   console.log("movie component data", props.searchResult);
@@ -20,14 +21,24 @@ function MovieResult(props) {
       </div>
     );
   } else {
-    console.log("title", props.searchResult.Title)
+    console.log("title", props.searchResult.Title);
     return (
-      <div className="card col-5">
-        <div className="card">
-          <p>Title: {props.searchResult.Title}</p>
-          <img src={props.searchResult.Poster} alt={props.searchResult.Title} />
+      <Link
+        to={{
+          pathname: "/movie",
+          state: { isLoggedIn: true, searchResult: true }
+        }}
+      >
+        <div className="card col-5">
+          <div className="card">
+            <p>Title: {props.searchResult.Title}</p>
+            <img
+              src={props.searchResult.Poster}
+              alt={props.searchResult.Title}
+            />
+          </div>
         </div>
-      </div>
+      </Link>
     );
   }
 }
