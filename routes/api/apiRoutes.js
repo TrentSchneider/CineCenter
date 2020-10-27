@@ -44,6 +44,50 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
+router.route("/api/towatch/add/:id").put((req, res) => {
+  User.updateOne({ _id: req.params.id }, { $push: { towatch: req.body } })
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      res.send(err);
+    });
+});
+
+router.route("/api/towatch/remove/:id").put((req, res) => {
+  User.updateOne({ _id: req.params.id }, { $push: { towatch: req.body } })
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      res.send(err);
+    });
+});
+
+router.route("/api/watched/add/:id").put((req, res) => {
+  User.updateOne({ _id: req.params.id }, { $push: { watched: req.body } })
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      res.send(err);
+    });
+});
+
+router.route("/api/watched/remove/:id").put((req, res) => {
+  User.updateOne({ _id: req.params.id }, { $push: { watched: req.body } })
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      res.send(err);
+    });
+});
+
+router.route("/api/towatch").get((req, res) => {
+  User.findById;
+});
+
 router.get("/dummy", (req, res) => {
   res.send("dummy");
 });
