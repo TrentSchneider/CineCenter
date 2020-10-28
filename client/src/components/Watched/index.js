@@ -1,14 +1,15 @@
 import React from "react";
 
 function Watched(props) {
+  console.log("props.watchedList", props.watchedList);
   return (
     <div className="card col-5">
-      {props.data.list.towatch.map((data, i) => (
+      <h1>Watched List</h1>
+      {props.watchedList.map((data, i) => (
         <div className="card" key={i}>
-          <p>Title: {data.title}</p>
-          <img src={data.image} alt={data.title} />
-          <p>Year: {data.year}</p>
-          <p>Description: {data.description}</p>
+          <p>Title: {data.Title}</p>
+          <img src={data.Poster} alt={data.Title} />
+          
         </div>
       ))}
     </div>
