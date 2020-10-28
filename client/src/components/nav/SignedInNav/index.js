@@ -43,7 +43,7 @@ function DropMenu(props) {
               </li>
               <li>
                 <Link
-                  to={{ pathname: "/movielist", state: { isLoggedIn: true } }}
+                  to={{ pathname: "/watchlist", state: { isLoggedIn: true } }}
                 >
                   Movie Lists
                 </Link>
