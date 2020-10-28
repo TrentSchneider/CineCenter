@@ -29,7 +29,7 @@ function MovieSearch(props) {
             Submit
           </button>
         </form>
-        <MovieResult searchResult={props.searchResult}/>
+        <MovieResult searchResult={props.searchResult} />
       </div>
     </div>
   );
