@@ -15,7 +15,6 @@ import API from "./utils/API";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [data, setData] = useState(null);
   const [loginEmail, setLoginEmail] = useState("test3@test.com");
   const [loginPassword, setLoginPassword] = useState("password");
   const [registerUsername, setRegisterUsername] = useState("");
@@ -23,13 +22,13 @@ function App() {
   const [registerPassword, setRegisterPassword] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [searchMovie, setSearchMovie] = useState("");
-  const [toWatchList, setToWatchList] = useState([]);
-  const [watchedList, setWatchedList] = useState([]);
-
+  const [addToWatch, setAddToWatch] = useState([]);
+  const [moveMovie, setMoveMovie] = useState([]);
+  const [user, setUser] = useState([]);
+  // let user=[]
   useEffect(() => {
-    // window.location.replace(process.env.PUBLIC_URL + "/home");
-    console.log("user data", data);
-  }, [isLoggedIn]);
+    console.log("user after login", user);
+  }, [isLoggedIn, user]);
 
   function handleLogoutClick() {
     setIsLoggedIn(false);
@@ -37,15 +36,16 @@ function App() {
   function handleLoginClick(event) {
     event.preventDefault();
     API.login(loginEmail, loginPassword).then(res => {
-      console.log("res response", res);
-      console.log("res data list", res.data.list);
-      console.log("res data list towatch", res.data.list.towatch);
-      setData(res.data);
-      setToWatchList(res.data.list.towatch);
-      console.log("to watch", toWatchList);
-      setWatchedList(res.data.list.watched);
-      console.log("watched list", watchedList);
-      console.log("data from login", data);
+      console.log(res.data);
+
+      setUser({
+        id: res.data._id,
+        username: res.data.username,
+        towatch: res.data.towatch,
+        watched: res.data.watched
+      });
+      console.log("user after login", user);
+
       setIsLoggedIn(true);
     });
   }
@@ -67,6 +67,24 @@ function App() {
       .catch(err => console.log("err", err));
   }
 
+  function handleAddToWatch(event) {
+    event.preventDefault();
+    // setAddToWatch(user.id,searchResult.Title,searchResult.Poster );
+    API.addToWatch(user.id, searchResult.Title, searchResult.Poster).then(
+      res => {
+        console.log("added to towatch", res.data);
+      }
+    );
+  }
+
+  function handleMoveToWatched(id, title, poster) {
+    API.addToWatched(id, title, poster).then(() => {
+      // API.deleteToWatch(id, title).then(res => {
+      //   console.log("moved to watched", res.data);
+      // });
+    });
+  }
+
   if (isLoggedIn) {
     console.log("is logged in", isLoggedIn);
 
@@ -76,15 +94,18 @@ function App() {
     // });
     return (
       <Router>
-        <Header data={data} />
+        <Header user={user} />
         <SignedInNav handleLogoutClick={handleLogoutClick} />
         <div className="layer">
           <Switch>
             <Route exact path={["/", "/home"]}>
-              <Home data={data} />
+              <Home user={user} />
             </Route>
             <Route exact path="/watchlist">
-              <WatchList toWatchList={toWatchList} watchedList={watchedList} />
+              <WatchList
+                user={user}
+                handleMoveToWatched={handleMoveToWatched}
+              />
             </Route>
           </Switch>
           <Route exact path="/moviesearch">
@@ -97,8 +118,8 @@ function App() {
           <Route exact path="/movie">
             <MovieInfo
               searchResult={searchResult}
-              watchedList={watchedList}
-              toWatchList={toWatchList}
+              user={user}
+              handleAddToWatch={handleAddToWatch}
             />
           </Route>
         </div>
@@ -139,11 +160,7 @@ function App() {
               />
             </Route>
             <Route exact path="/movie">
-              <MovieInfo
-                searchResult={searchResult}
-                watchedList={watchedList}
-                toWatchList={toWatchList}
-              />
+              <MovieInfo searchResult={searchResult} />
             </Route>
           </Switch>
         </div>
