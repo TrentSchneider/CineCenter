@@ -30,27 +30,41 @@ function DropMenu(props) {
           <div className="card-body">
             <ul className="dmen">
               <li>
-                <Link to={{ pathname: "/home", state: { isLoggedIn: true } }}>
+                <Link
+                  to={{
+                    pathname: "/home",
+                    state: { isLoggedIn: true, user: true }
+                  }}
+                >
                   Home
                 </Link>
               </li>
               <li>
                 <Link
-                  to={{ pathname: "/moviesearch", state: { isLoggedIn: true } }}
+                  to={{
+                    pathname: "/moviesearch",
+                    state: { isLoggedIn: true, user: true }
+                  }}
                 >
                   Movie Search
                 </Link>
               </li>
               <li>
                 <Link
-                  to={{ pathname: "/watchlist", state: { isLoggedIn: true } }}
+                  to={{
+                    pathname: "/watchlist",
+                    state: { isLoggedIn: true, user: true }
+                  }}
                 >
                   Movie Lists
                 </Link>
               </li>
               <li>
                 <Link
-                  to={{ pathname: "/api/logout", state: { isLoggedIn: true } }}
+                  to={{
+                    pathname: "/api/logout",
+                    state: { isLoggedIn: true, user: true }
+                  }}
                   onClick={() => props.handleLogoutClick()}
                 >
                   Lougout
