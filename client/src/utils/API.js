@@ -37,5 +37,44 @@ export default {
     console.log("----------------");
     console.log("query url", queryURL);
     return axios.get(queryURL);
+  },
+  addToWatch: function (userID, title, poster) {
+    console.log("userID", userID);
+    return axios({
+      method: "PUT",
+      data: {
+        Title: title,
+        Poster: poster
+      },
+      withCredentials: true,
+      url: "/api/towatch/add/" + userID
+    });
+  },
+  addToWatched: function (userID, title, poster) {
+    return axios({
+      method: "PUT",
+      data: {
+        Title: title,
+        Poster: poster
+      },
+      withCredentials: true,
+      url: "/api/watched/add/" + userID
+    });
+  },
+  deleteToWatch: function (userID, title){
+    return axios({
+      method:"DELETE",
+      withCredentials: true,
+      url: "/api/towatch/delete/" + userID
+
+    })
+  },
+  deleteWatched: function (userID, title){
+    return axios({
+      method:"DELETE",
+      withCredentials: true,
+      url: "/api/watched/delete/" + userID
+
+    })
   }
 };
