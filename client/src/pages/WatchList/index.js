@@ -5,8 +5,8 @@ import Watched from "../../components/Watched";
 function WatchList(props) {
   return (
     <div className="card d-flex justify-content-around row">
-      <ToWatch toWatchList={props.toWatchList} />
-      <Watched watchedList={props.watchedList} />
+      <ToWatch user={props.user} handleMoveToWatched={props.handleMoveToWatched} />
+      <Watched user={props.user} />
     </div>
   );
 }
