@@ -20,10 +20,9 @@ const UserSchema = new Schema(
       type: Date,
       default: Date.now
     },
-    list: {
-      towatch: [],
-      watched: []
-    }
+
+    towatch: [],
+    watched: []
   },
   { strict: false }
 );
