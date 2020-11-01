@@ -11,7 +11,8 @@ const bcrypt = require("bcryptjs");
 
 router
   .route("/login")
-  .post(passport.authenticate("local", { session: false }), (req, res) => {
+  // .post(passport.authenticate("local", { session: false }), (req, res) => {
+  .post(passport.authenticate("local"), (req, res) => {
     res.json(req.user);
   });
 
@@ -34,8 +35,15 @@ router.post("/signup", (req, res) => {
 });
 
 router.get("/user", (req, res) => {
-  res.send(req.user);
-  // res.send("dummy");
+  // let { id } = req.body;
+  // User.findById(id).then(
+  //   () => res.json(req.user)
+  // );
+  if (req.user) {
+    res.json({ user: req.user });
+  } else {
+    res.json({ user: null });
+  }
 });
 
 // Route for logging user out
@@ -44,12 +52,11 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-router.route("/towatch/add/:id").put((req, res) => {
-  let { Title, Poster } = req.body;
-  User.updateOne(
-    { _id: req.params.id },
-    { $push: { towatch: { Title, Poster } } }
-  )
+// movie schema = Movie
+router.route("/towatch/add").put((req, res) => {
+  let data = req.body.data;
+  console.log("req.user", req.user);
+  User.updateOne({ _id: req.user.id }, { $push: { towatch: data } })
     .then(data => {
       res.json(data);
     })
@@ -58,9 +65,28 @@ router.route("/towatch/add/:id").put((req, res) => {
     });
 });
 
-router.route("/towatch/remove/:id").put((req, res) => {
-  let { Title } = req.body;
-  User.updateOne({ _id: req.params.id }, { $remove: { towatch: { Title } } })
+router.route("/towatch/move").put((req, res) => {
+  let { imdbID } = req.body.data;
+  let movieData = req.body.data;
+  console.log("route data", movieData);
+  User.updateOne({ _id: req.user.id }, { $pull: { towatch: { imdbID } } })
+    .then(data => {
+      console.log.log("movie data", movieData);
+      User.updateOne(
+        { _id: req.user.id },
+        { $push: { watched: { movieData } } }
+      )
+        .then(data => {
+          res.json(data);
+        })
+        .catch(err => res.send(err));
+    })
+    .catch(err => res.send(err));
+});
+
+router.route("/watched/add").put((req, res) => {
+  let movieData = req.body.data;
+  User.updateOne({ _id: req.user.id }, { $push: { watched: { movieData } } })
     .then(data => {
       res.json(data);
     })
@@ -69,12 +95,12 @@ router.route("/towatch/remove/:id").put((req, res) => {
     });
 });
 
-router.route("/watched/add/:id").put((req, res) => {
-  let { Title, Poster } = req.body;
-  User.updateOne(
-    { _id: req.params.id },
-    { $push: { watched: { Title, Poster } } }
-  )
+router.route("/towatch/remove").put((req, res) => {
+  console.log("towatch remove route reached")
+  let { imdbID } = req.body.data;
+  console.log("req.body", req.body);
+  console.log("{Title} value", Title);
+  User.updateOne({ _id: req.user.id }, { $pull: { towatch: { imdbID } } })
     .then(data => {
       res.json(data);
     })
@@ -83,9 +109,9 @@ router.route("/watched/add/:id").put((req, res) => {
     });
 });
 
-router.route("/watched/remove/:id").put((req, res) => {
-  let { Title } = req.body;
-  User.updateOne({ _id: req.params.id }, { $remove: { watched: { Title } } })
+router.route("/watched/remove").put((req, res) => {
+  let { imdbID } = req.body.data;
+  User.updateOne({ _id: req.user.id }, { $pull: { towatch: { imdbID } } })
     .then(data => {
       res.json(data);
     })
