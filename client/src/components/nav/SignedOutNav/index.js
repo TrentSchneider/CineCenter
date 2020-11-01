@@ -23,6 +23,13 @@ function DropMenu(props) {
             </Link>
           </li>
           <li>
+            <Link
+              to={{ pathname: "/map", state: { isLoggedIn: true } }}
+            >
+              Find Nearby Theaters
+            </Link>
+          </li>
+          <li>
             <Link to={{ pathname: "/login", state: { isLoggedIn: true } }}>
               Sign In
             </Link>
