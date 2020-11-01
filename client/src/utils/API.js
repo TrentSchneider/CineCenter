@@ -24,9 +24,10 @@ export default {
       url: "/api/login"
     });
   },
-  getUser: function () {
+  getUser: function (id) {
     return axios({
       method: "GET",
+      data: { id },
       withCredentials: true,
       url: "/api/user"
     });
@@ -38,43 +39,47 @@ export default {
     console.log("query url", queryURL);
     return axios.get(queryURL);
   },
-  addToWatch: function (userID, title, poster) {
-    console.log("userID", userID);
+  addToWatch: function (data) {
     return axios({
       method: "PUT",
-      data: {
-        Title: title,
-        Poster: poster
-      },
+      data: { data },
       withCredentials: true,
-      url: "/api/towatch/add/" + userID
+      url: "/api/towatch/add"
     });
   },
-  addToWatched: function (userID, title, poster) {
+  addToWatched: function (data) {
     return axios({
       method: "PUT",
-      data: {
-        Title: title,
-        Poster: poster
-      },
+      data: { data },
       withCredentials: true,
-      url: "/api/watched/add/" + userID
+      url: "/api/watched/add"
     });
   },
-  deleteToWatch: function (userID, title){
+  moveToWatch: function (data) {
+    console.log("axios data", data);
     return axios({
-      method:"DELETE",
+      method: "PUT",
+      data: { data },
       withCredentials: true,
-      url: "/api/towatch/delete/" + userID
-
-    })
+      url: "/api/towatch/move"
+    });
   },
-  deleteWatched: function (userID, title){
+  deleteToWatch: function (data) {
+    console.log("axios data", data);
     return axios({
-      method:"DELETE",
+      method: "PUT",
+      data: { data },
       withCredentials: true,
-      url: "/api/watched/delete/" + userID
+      url: "/api/towatch/remove"
+    });
+  },
 
-    })
+  deleteWatched: function (data) {
+    return axios({
+      method: "PUT",
+      data: { data },
+      withCredentials: true,
+      url: "/api/watched/remove"
+    });
   }
 };
