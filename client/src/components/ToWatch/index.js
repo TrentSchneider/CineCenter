@@ -12,11 +12,18 @@ function ToWatch(props) {
           <p>Year: {data.Year}</p>
           <p>Description: {data.Plot}</p>
           <button
-            onClick={() =>
-              props.handleMoveToWatched(props.user.id, data.Title, data.Poster)
-            }
+            onClick={() => {
+              props.handleMoveToWatched(data);
+            }}
           >
             Move to Watched List
+          </button>
+          <button
+            onClick={() => {
+              props.handleDeleteToWatch(data);
+            }}
+          >
+            Delete
           </button>
         </div>
       ))}
