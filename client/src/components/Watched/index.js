@@ -9,7 +9,13 @@ function Watched(props) {
         <div className="card" key={i}>
           <p>Title: {data.Title}</p>
           <img src={data.Poster} alt={data.Title} />
-          
+           <button
+            onClick={() => {
+              props.handleDeleteToWatch(props.user.id, data);
+            }}
+          >
+            Delete
+          </button>
         </div>
       ))}
     </div>
