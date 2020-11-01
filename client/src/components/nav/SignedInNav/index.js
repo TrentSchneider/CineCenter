@@ -67,7 +67,7 @@ function DropMenu(props) {
                   }}
                   onClick={() => props.handleLogoutClick()}
                 >
-                  Lougout
+                  Logout
                 </Link>
               </li>
             </ul>
