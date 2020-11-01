@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
 function SignUp(props) {
+  const [registerUsername, setRegisterUsername] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+
+  function handleRegisterClick(event) {
+    event.preventDefault();
+    props.API.register(registerUsername, registerEmail, registerPassword).then(
+      () => {
+        props.API.login(registerEmail, registerPassword).then(res => {
+          props.setUser({
+            id: res.data._id,
+            email: res.data.email,
+            username: res.data.username,
+            towatch: res.data.towatch,
+            watched: res.data.watched
+          });
+          props.setIsLoggedIn(true);
+        });
+      }
+    );
+  }
+
   return (
     <div className="container">
       <div className="card">
@@ -12,7 +34,7 @@ function SignUp(props) {
               className="form-control"
               id="email-input"
               placeholder="Email"
-              onChange={e => props.setRegisterEmail(e.target.value)}
+              onChange={e => setRegisterEmail(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -22,7 +44,7 @@ function SignUp(props) {
               className="form-control"
               id="username-input"
               placeholder="Username"
-              onChange={e => props.setRegisterUsername(e.target.value)}
+              onChange={e => setRegisterUsername(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -32,13 +54,13 @@ function SignUp(props) {
               className="form-control"
               id="password-input"
               placeholder="Password"
-              onChange={e => props.setRegisterPassword(e.target.value)}
+              onChange={e => setRegisterPassword(e.target.value)}
             />
           </div>
           <button
             type="submit"
             className="btn btn-default"
-            onClick={props.handleRegisterClick}
+            onClick={handleRegisterClick}
           >
             Sign Up
           </button>
