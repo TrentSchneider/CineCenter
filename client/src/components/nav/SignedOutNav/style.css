@@ -6,7 +6,9 @@
 }
 ul {
   list-style-type: none;
-  z-index: 1;
+}
+.content {
+  z-index: 100;
 }
 /* Style the button that is used to open and close the collapsible content */
 .collapsible {
