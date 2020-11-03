@@ -3,6 +3,7 @@ import ToWatch from "../../components/ToWatch";
 import Watched from "../../components/Watched";
 
 function WatchList(props) {
+  console.log("watchlist user", props.user);
   return (
     <div className="card d-flex justify-content-around row">
       <ToWatch
