@@ -24,17 +24,32 @@ export default {
       url: "/api/login"
     });
   },
-  getUser: function (id) {
+  logout: function () {
     return axios({
       method: "GET",
-      data: { id },
+      withCredentials: true,
+      url: "/api/logout"
+    });
+  },
+  getUser: function () {
+    return axios({
+      method: "GET",
       withCredentials: true,
       url: "/api/user"
     });
   },
   searchMovie: function (searchMovie) {
     let queryURL =
-      "https://www.omdbapi.com/?t=" + searchMovie + "&apikey=trilogy";
+      "https://www.omdbapi.com/?s=" +
+      searchMovie +
+      "&type=movie&apikey=trilogy";
+    console.log("----------------");
+    console.log("query url", queryURL);
+    return axios.get(queryURL);
+  },
+  findMovie: function (selectedResult) {
+    let queryURL =
+      "https://www.omdbapi.com/?i=" + selectedResult + "&apikey=trilogy";
     console.log("----------------");
     console.log("query url", queryURL);
     return axios.get(queryURL);
@@ -66,6 +81,8 @@ export default {
   },
   deleteToWatch: function (data) {
     console.log("axios data", data);
+    let { imdbID } = data;
+    console.log("{imdbID}", imdbID);
     return axios({
       method: "PUT",
       data: { data },
