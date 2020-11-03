@@ -41,15 +41,16 @@ router.get("/user", (req, res) => {
   // );
   if (req.user) {
     res.json({ user: req.user });
+    console.log("user found");
   } else {
     res.json({ user: null });
+    console.log("user not found");
   }
 });
 
 // Route for logging user out
 router.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/");
+  req.session.destroy(function (err) {});
 });
 
 // movie schema = Movie
@@ -70,7 +71,7 @@ router.route("/towatch/move").put((req, res) => {
   let movieData = req.body.data;
   console.log("route data", movieData);
   User.updateOne({ _id: req.user.id }, { $pull: { towatch: { imdbID } } })
-    .then(data => {
+    .then(res => {
       console.log.log("movie data", movieData);
       User.updateOne(
         { _id: req.user.id },
@@ -96,10 +97,10 @@ router.route("/watched/add").put((req, res) => {
 });
 
 router.route("/towatch/remove").put((req, res) => {
-  console.log("towatch remove route reached")
+  console.log("towatch remove route reached");
   let { imdbID } = req.body.data;
   console.log("req.body", req.body);
-  console.log("{Title} value", Title);
+  console.log("req.user.id", req.user.id);
   User.updateOne({ _id: req.user.id }, { $pull: { towatch: { imdbID } } })
     .then(data => {
       res.json(data);
