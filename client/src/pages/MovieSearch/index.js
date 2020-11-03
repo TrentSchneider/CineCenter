@@ -40,7 +40,10 @@ function MovieSearch(props) {
             Submit
           </button>
         </form>
-        <MovieResult searchResult={props.searchResult} />
+        <MovieResult
+          searchResult={props.searchResult}
+          setSelectedResult={props.setSelectedResult}
+        />
       </div>
     </div>
   );
