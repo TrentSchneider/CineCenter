@@ -1,7 +1,46 @@
-.dmen {
+/* .dmen {
   position: absolute;
   width: 100%;
   left: 0;
   top: 100%;
   z-index: 1;
+} */
+
+.menu input {
+  display: none;
+}
+
+.menu input:checked ~ label span:last-child {
+  display: none;
+}
+.menu input:not(:checked) ~ label span:first-child {
+  display: none;
+}
+.menu {
+  color: white;
+  border-radius: 25px;
+  background-color: darkslategray;
+  padding: 10px;
+  padding-top: 20px;
+
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  min-width: 40px;
+  min-height: 40px;
+  overflow: hidden;
+}
+
+.menu ul {
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  transition: width 0.5s, height 0.5s;
+  list-style: none;
+}
+.menu input:checked ~ ul {
+  width: 200px;
+  height: 100px;
 }
