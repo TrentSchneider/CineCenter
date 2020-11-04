@@ -18,7 +18,7 @@ function MovieResult(props) {
               pathname: "/movie/" + data.imdbID,
               state: { isLoggedIn: true, selectedResult: true }
             }}
-            onClick={props.setSelectedResult(data.imdbID)}
+            // onClick={props.setSelectedResult(data.imdbID)}
             key={i}
           >
             <div className="card" data-id={data.imdbID}>

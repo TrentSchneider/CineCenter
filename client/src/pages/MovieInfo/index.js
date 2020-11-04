@@ -12,6 +12,10 @@ function MovieInfo(props) {
   });
   useEffect(() => {
     console.log("movie state", movieResults);
+    console.log("movie info props", props);
+    if (props.isLoggedIn) {
+      props.userLists();
+    }
   }, [movieResults]);
   useEffect(() => {
     console.log("running");
@@ -21,12 +25,15 @@ function MovieInfo(props) {
       setMovieResults(res.data);
     });
   }, []);
-  console.log("movie info", props.selectedResult);
+  console.log("movie info", props.movieResults);
   console.log("Movie ID", movieID);
   console.log("user", props.user);
+  console.log("movie lists", props.lists);
   let addBtn;
   if (props.isLoggedIn) {
-    props.user.towatch.forEach(e => {
+    console.log("isLoggedIn for movie button", props.isLoggedIn);
+    console.log("movie lists", props.lists);
+    props.lists.towatch.forEach(e => {
       if (movieResults.Title === e) {
         addBtn = <button>Already on Watch List</button>;
       }
@@ -46,24 +53,30 @@ function MovieInfo(props) {
     console.log("final movieResults", movieResults);
 
     return (
-      <div className="card col-8">
-        <div className="card">
-          <p>Title: {movieResults.Title}</p>
-          <img src={movieResults.Poster} alt={movieResults.Title} />
-          <p>Year: {movieResults.Year}</p>
-          <p>Description: {movieResults.Plot}</p>
-          {addBtn}
+      <div className="d-flex justify-content-center">
+        <div className="card col-8">
+          <div className="card">
+            <h1>Logged in version</h1>
+            <p>Title: {movieResults.Title}</p>
+            <img src={movieResults.Poster} alt={movieResults.Title} />
+            <p>Year: {movieResults.Year}</p>
+            <p>Description: {movieResults.Plot}</p>
+            {addBtn}
+          </div>
         </div>
       </div>
     );
   } else {
     return (
-      <div className="card col-8">
-        <div className="card">
-          <p>Title: {movieResults.Title}</p>
-          <img src={movieResults.Poster} alt={movieResults.Title} />
-          <p>Year: {movieResults.Year}</p>
-          <p>Description: {movieResults.Plot}</p>
+      <div className="d-flex justify-content-center">
+        <div className="card col-8">
+          <div className="card">
+            <h1>Logged out version</h1>
+            <p>Title: {movieResults.Title}</p>
+            <img src={movieResults.Poster} alt={movieResults.Title} />
+            <p>Year: {movieResults.Year}</p>
+            <p>Description: {movieResults.Plot}</p>
+          </div>
         </div>
       </div>
     );

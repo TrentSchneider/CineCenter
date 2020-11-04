@@ -1,11 +1,11 @@
 import React from "react";
 
 function ToWatch(props) {
-  console.log("props.toWatchList", props.user.towatch);
+  console.log("props.toWatchList", props.lists.towatch);
   return (
     <div className="card col-5">
       <h1>To Watch List</h1>
-      {props.user.towatch.map((data, i) => (
+      {props.lists.towatch.map((data, i) => (
         <div className="card" key={i}>
           <p>Title: {data.Title}</p>
           <img src={data.Poster} alt={data.Title} />
@@ -14,6 +14,11 @@ function ToWatch(props) {
           <button
             onClick={() => {
               props.handleMoveToWatched(data);
+              if (props.btnClick) {
+                props.setBtnClick(false);
+              } else {
+                props.setBtnClick(true);
+              }
             }}
           >
             Move to Watched List
@@ -21,6 +26,11 @@ function ToWatch(props) {
           <button
             onClick={() => {
               props.handleDeleteToWatch(data);
+              if (props.btnClick) {
+                props.setBtnClick(false);
+              } else {
+                props.setBtnClick(true);
+              }
             }}
           >
             Delete
