@@ -11,7 +11,7 @@ function Watched(props) {
           <img src={data.Poster} alt={data.Title} />
           <button
             onClick={() => {
-              props.handleDeleteToWatch(props.user.id, data);
+              props.handleDeleteWatched(data);
               if (props.btnClick) {
                 props.setBtnClick(false);
               } else {

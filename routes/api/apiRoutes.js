@@ -120,7 +120,7 @@ router.route("/towatch/remove").put((req, res) => {
 
 router.route("/watched/remove").put((req, res) => {
   let { imdbID } = req.body.data;
-  User.updateOne({ _id: req.user.id }, { $pull: { towatch: { imdbID } } })
+  User.updateOne({ _id: req.user.id }, { $pull: { watched: { imdbID } } })
     .then(data => {
       res.json(data);
     })
