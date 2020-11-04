@@ -38,13 +38,7 @@ export default {
       url: "/api/user"
     });
   },
-  getLists: function () {
-    return axios({
-      method: "GET",
-      withCredentials: true,
-      url: "/api/lists"
-    });
-  },
+
   searchMovie: function (searchMovie) {
     let queryURL =
       "https://www.omdbapi.com/?s=" +
