@@ -10,14 +10,14 @@ function LogIn(props) {
       console.log(res.data);
       props.setUser({
         id: res.data._id,
-        email: res.data.email,
-        username: res.data.username,
+        username: res.data.username
+      });
+      props.setLists({
         towatch: res.data.towatch,
         watched: res.data.watched
       });
       console.log("user after login", props.user);
       props.setIsLoggedIn(true);
-      
     });
   }
 

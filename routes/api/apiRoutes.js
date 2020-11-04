@@ -48,6 +48,14 @@ router.get("/user", (req, res) => {
   }
 });
 
+router.get("/lists", (req, res) => {
+  User.findOne({ _id: req.user.id })
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => res.send(err));
+});
+
 // Route for logging user out
 router.get("/logout", (req, res) => {
   req.session.destroy(function (err) {});
