@@ -9,22 +9,24 @@ function WatchList(props) {
   }, [btnClick]);
   console.log("watchlist user", props.user);
   return (
-    <div className="card d-flex justify-content-around row">
-      <ToWatch
-        setBtnClick={setBtnClick}
-        lists={props.lists}
-        user={props.user}
-        handleDeleteToWatch={props.handleDeleteToWatch}
-        handleMoveToWatched={props.handleMoveToWatched}
-        userInfo={props.userInfo}
-      />
-      <Watched
-        setBtnClick={setBtnClick}
-        lists={props.lists}
-        user={props.user}
-        handleDeleteWatched={props.handleDeleteWatched}
-        userInfo={props.userInfo}
-      />
+    <div className="d-flex justify-content-center">
+      <div className="card d-flex justify-content-around row col-8">
+        <ToWatch
+          setBtnClick={setBtnClick}
+          lists={props.lists}
+          user={props.user}
+          handleDeleteToWatch={props.handleDeleteToWatch}
+          handleMoveToWatched={props.handleMoveToWatched}
+          userInfo={props.userInfo}
+        />
+        <Watched
+          setBtnClick={setBtnClick}
+          lists={props.lists}
+          user={props.user}
+          handleDeleteWatched={props.handleDeleteWatched}
+          userInfo={props.userInfo}
+        />
+      </div>
     </div>
   );
 }
