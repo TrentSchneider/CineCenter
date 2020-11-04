@@ -38,6 +38,7 @@ export default {
       url: "/api/user"
     });
   },
+
   searchMovie: function (searchMovie) {
     let queryURL =
       "https://www.omdbapi.com/?s=" +
