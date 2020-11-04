@@ -1,4 +1,8 @@
-.layer {
+/* .layer {
   z-index: -1;
-}
+} */
 
+.backC {
+  background-color: #333333;
+  color: white;
+}

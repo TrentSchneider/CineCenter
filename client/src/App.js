@@ -23,8 +23,9 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({
     id: "testID",
-    email: "testEmail",
-    username: "testUsername",
+    username: "testUsername"
+  });
+  const [lists, setLists] = useState({
     towatch: [{ Title: "test1" }, { Title: "test2" }],
     watched: [{ Title: "test4" }, { Title: "test4" }]
   });
@@ -36,7 +37,9 @@ function App() {
   }, [isLoggedIn]);
   useEffect(() => {
     console.log("user updated", user);
-    console.log("user id", user.id);
+    if (isLoggedIn) {
+      console.log("user id", user.id);
+    }
   }, [user]);
 
   function handleLogoutClick() {
@@ -55,14 +58,12 @@ function App() {
   function handleMoveToWatched(data) {
     API.moveToWatch(data).then(res => {
       console.log("moved from towatch to watched", res.data);
-      // userInfo();
     });
   }
 
   function handleDeleteToWatch(data) {
     API.deleteToWatch(data).then(res => {
       console.log("removed from towatch", res.data);
-      // userInfo();
     });
   }
 
@@ -71,19 +72,26 @@ function App() {
       console.log("removed from watched", res.data);
     });
   }
-
-  function userInfo() {
-    API.getUser().then(res => {
-      console.log("get user response", res.data);
-      setUser({
-        id: res.data._id,
-        email: res.data.email,
-        username: res.data.username,
+  function userLists() {
+    API.getLists().then(res => {
+      console.log("get user lists", res.data);
+      setLists({
         towatch: res.data.towatch,
         watched: res.data.watched
       });
+    });
+  }
+  function userInfo() {
+    API.getUser().then(res => {
+      console.log("get user check", res.data);
       if (res.data.user) {
-        setIsLoggedIn(true);
+        setUser({
+          id: res.data.user.id,
+          username: res.data.user.username
+        });
+        if (res.data.user) {
+          setIsLoggedIn(true);
+        }
       }
     });
   }
@@ -102,6 +110,9 @@ function App() {
               </Route>
               <Route exact path="/watchlist">
                 <WatchList
+                  userLists={userLists}
+                  lists={lists}
+                  setLists={setLists}
                   user={user}
                   handleDeleteToWatch={handleDeleteToWatch}
                   handleMoveToWatched={handleMoveToWatched}
@@ -118,6 +129,10 @@ function App() {
               </Route>
               <Route exact path="/movie/:id">
                 <MovieInfo
+                  isLoggedIn={isLoggedIn}
+                  userLists={userLists}
+                  lists={lists}
+                  setLists={setLists}
                   searchResult={searchResult}
                   user={user}
                   handleAddToWatch={handleAddToWatch}
@@ -156,6 +171,7 @@ function App() {
                   user={user}
                   setUser={setUser}
                   setIsLoggedIn={setIsLoggedIn}
+                  setLists={setLists}
                 />
               </Route>
               <Route exact path="/signup">
