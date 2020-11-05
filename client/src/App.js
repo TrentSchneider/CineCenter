@@ -31,6 +31,7 @@ function App() {
   });
   const [searchResult, setSearchResult] = useState([]);
   const [selectedResult, setSelectedResult] = useState("");
+  const [btnClick, setBtnClick] = useState(false);
 
   useEffect(() => {
     userInfo();
@@ -41,7 +42,11 @@ function App() {
       console.log("user id", user.id);
     }
   }, [user]);
-
+  useEffect(() => {
+    if (isLoggedIn) {
+      userLists();
+    }
+  }, [btnClick]);
   function handleLogoutClick() {
     API.logout().then(() => {
       setIsLoggedIn(false);
@@ -117,6 +122,7 @@ function App() {
                   handleDeleteToWatch={handleDeleteToWatch}
                   handleMoveToWatched={handleMoveToWatched}
                   handleDeleteWatched={handleDeleteWatched}
+                  setBtnClick={setBtnClick}
                 />
               </Route>
               <Route exact path="/moviesearch">
@@ -139,6 +145,7 @@ function App() {
                   userInfo={userInfo}
                   selectedResult={selectedResult}
                   API={API}
+                  setBtnClick={setBtnClick}
                 />
               </Route>
               <Route exact path="/map">
@@ -155,7 +162,7 @@ function App() {
     return (
       <div className="backC">
         <Router>
-          <Header />
+          {/* <Header /> */}
           <SignedOutNav />
           <div className="layer backH">
             <Switch>
@@ -201,6 +208,7 @@ function App() {
                 selectedResult={selectedResult}
                 API={API}
                 isLoggedIn={isLoggedIn}
+                setBtnClick={setBtnClick}
               />
             </Route>
             <Route exact path="/map">
