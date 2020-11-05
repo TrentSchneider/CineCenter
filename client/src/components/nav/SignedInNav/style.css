@@ -424,7 +424,7 @@ ul.main-nav > li ul.sub-menu-lists > li > a {
   /* Drop Down/Up Arrow for Mega Menu */
   ul.main-nav > li > a.mega-menu > span {
     display: block;
-    vertical-align: middle;
+    /* vertical-align: middle; */
   }
   ul.main-nav > li > a.mega-menu > span:after {
     width: 0;
