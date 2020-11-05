@@ -106,7 +106,7 @@ function App() {
     return (
       <div className="backC">
         <Router>
-          <Header user={user} />
+          {/* <Header user={user} /> */}
           <SignedInNav handleLogoutClick={handleLogoutClick} />
           <div className="layer">
             <Switch>
