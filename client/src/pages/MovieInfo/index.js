@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "./style.css";
 
 function MovieInfo(props) {
   const [movieID, setMovieID] = useState(useParams().id);
@@ -32,9 +33,10 @@ function MovieInfo(props) {
   let addBtn;
   if (props.isLoggedIn) {
     console.log("isLoggedIn for movie button", props.isLoggedIn);
+    console.log("movie results", movieResults);
     console.log("movie lists", props.lists);
     props.lists.towatch.forEach(e => {
-      if (movieResults.Title === e) {
+      if (movieResults.imdbID === e.imdbID) {
         addBtn = <button>Already on Watch List</button>;
       }
     });
@@ -43,6 +45,11 @@ function MovieInfo(props) {
         <button
           onClick={() => {
             props.handleAddToWatch(movieResults);
+            if (props.btnClick) {
+              props.setBtnClick(false);
+            } else {
+              props.setBtnClick(true);
+            }
           }}
         >
           Add to Watch List
@@ -55,7 +62,7 @@ function MovieInfo(props) {
     return (
       <div className="d-flex justify-content-center">
         <div className="card col-8">
-          <div className="card">
+          <div className="card bf">
             <h1>Logged in version</h1>
             <p>Title: {movieResults.Title}</p>
             <img src={movieResults.Poster} alt={movieResults.Title} />
@@ -70,7 +77,7 @@ function MovieInfo(props) {
     return (
       <div className="d-flex justify-content-center">
         <div className="card col-8">
-          <div className="card">
+          <div className="card bf">
             <h1>Logged out version</h1>
             <p>Title: {movieResults.Title}</p>
             <img src={movieResults.Poster} alt={movieResults.Title} />
