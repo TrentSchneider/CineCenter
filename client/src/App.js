@@ -7,17 +7,17 @@ import {
   Switch
 } from "react-router-dom";
 // import Header from "./components/Header";
-import SignedInNav from "./components/Nav/SignedInNav/index";
-import SignedOutNav from "./components/Nav/SignedOutNav/index";
-import Footer from "./components/Footer/index";
-import Home from "./pages/Home/index";
-import LogIn from "./pages/LogIn/index";
-import SignUp from "./pages/SignUp/index";
-import WatchList from "./pages/WatchList/index";
-import MovieSearch from "./pages/MovieSearch/index";
-import MovieInfo from "./pages/MovieInfo/index";
-import Map from "./pages/Map/index";
-import API from "./utils/API";
+import SignedInNav from "./components/Nav/SignedInNav/index.js";
+import SignedOutNav from "./components/Nav/SignedOutNav/index.js";
+import Footer from "./components/Footer/index.js";
+import Home from "./pages/Home/index.js";
+import LogIn from "./pages/LogIn/index.js";
+import SignUp from "./pages/SignUp/index.js";
+import WatchList from "./pages/WatchList/index.js";
+import MovieSearch from "./pages/MovieSearch/index.js";
+import MovieInfo from "./pages/MovieInfo/index.js";
+import Map from "./pages/Map/index.js";
+import API from "./utils/API.js";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
