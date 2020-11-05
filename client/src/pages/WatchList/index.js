@@ -13,7 +13,7 @@ function WatchList(props) {
     <div className="d-flex justify-content-center">
       <div className="card d-flex justify-content-around row col-8">
         <ToWatch
-          btnClick={btnClick}
+          btnClick={props.btnClick}
           setBtnClick={props.setBtnClick}
           lists={props.lists}
           user={props.user}
@@ -22,7 +22,7 @@ function WatchList(props) {
           userInfo={props.userInfo}
         />
         <Watched
-          btnClick={btnClick}
+          btnClick={props.btnClick}
           setBtnClick={props.setBtnClick}
           lists={props.lists}
           user={props.user}
