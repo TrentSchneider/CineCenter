@@ -7,16 +7,16 @@ import {
   Switch
 } from "react-router-dom";
 // import Header from "./components/Header";
-import SignedInNav from "./components/Nav/SignedInNav";
-import SignedOutNav from "./components/Nav/SignedOutNav";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import LogIn from "./pages/LogIn";
-import SignUp from "./pages/SignUp";
-import WatchList from "./pages/WatchList";
-import MovieSearch from "./pages/MovieSearch";
-import MovieInfo from "./pages/MovieInfo";
-import Map from "./pages/Map";
+import SignedInNav from "./components/Nav/SignedInNav/index";
+import SignedOutNav from "./components/Nav/SignedOutNav/index";
+import Footer from "./components/Footer/index";
+import Home from "./pages/Home/index";
+import LogIn from "./pages/LogIn/index";
+import SignUp from "./pages/SignUp/index";
+import WatchList from "./pages/WatchList/index";
+import MovieSearch from "./pages/MovieSearch/index";
+import MovieInfo from "./pages/MovieInfo/index";
+import Map from "./pages/Map/index";
 import API from "./utils/API";
 
 function App() {
