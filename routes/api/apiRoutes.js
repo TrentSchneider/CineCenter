@@ -88,7 +88,6 @@ router.route("/towatch/move").put((req, res) => {
           console.log("data", data);
           res.json(data);
         })
-        .catch(err => res.send(err));
     })
     .catch(err => res.send(err));
 });

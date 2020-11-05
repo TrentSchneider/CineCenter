@@ -1,0 +1,9 @@
+.minH-8-5 {
+  min-height: 85vh;
+}
+.minH-600 {
+  min-height: 600px;
+}
+.card {
+  background-color: lightgray;
+}

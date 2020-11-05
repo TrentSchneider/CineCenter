@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MovieResult from "../../components/MovieResult";
+import "./style.css";
 
 function MovieSearch(props) {
   const [searchMovie, setSearchMovie] = useState("");
@@ -15,8 +16,8 @@ function MovieSearch(props) {
 
   console.log("data", props.searchResult);
   return (
-    <div className="d-flex justify-content-center">
-      <div className="card col-8">
+    <div className="d-flex justify-content-center minH-6">
+      <div className="card col-8 minH-8-5 ">
         <form>
           <div className="form-group">
             <label htmlFor="inputMovie">Movie Title</label>
