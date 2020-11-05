@@ -123,7 +123,14 @@ function App() {
                   handleMoveToWatched={handleMoveToWatched}
                   handleDeleteWatched={handleDeleteWatched}
                   setBtnClick={setBtnClick}
+                  btnClick={btnClick}
                 />
+              </Route>
+              <Route exact path="/login">
+                <Redirect to="/" />
+              </Route>
+              <Route exact path="/signup">
+                <Redirect to="/" />
               </Route>
               <Route exact path="/moviesearch">
                 <MovieSearch
@@ -179,7 +186,11 @@ function App() {
                   setUser={setUser}
                   setIsLoggedIn={setIsLoggedIn}
                   setLists={setLists}
+                  isLoggedIn={isLoggedIn}
                 />
+              </Route>
+              <Route exact path="/watchlist">
+                <Redirect to="/" />
               </Route>
               <Route exact path="/signup">
                 <SignUp
@@ -189,31 +200,31 @@ function App() {
                   setIsLoggedIn={setIsLoggedIn}
                 />
               </Route>
-            </Switch>
 
-            <Route exact path="/moviesearch">
-              <MovieSearch
-                API={API}
-                setSearchResult={setSearchResult}
-                searchResult={searchResult}
-                setSelectedResult={setSelectedResult}
-              />
-            </Route>
-            <Route exact path="/movie/:id">
-              <MovieInfo
-                searchResult={searchResult}
-                user={user}
-                handleAddToWatch={handleAddToWatch}
-                userInfo={userInfo}
-                selectedResult={selectedResult}
-                API={API}
-                isLoggedIn={isLoggedIn}
-                setBtnClick={setBtnClick}
-              />
-            </Route>
-            <Route exact path="/map">
-              <Map />
-            </Route>
+              <Route exact path="/moviesearch">
+                <MovieSearch
+                  API={API}
+                  setSearchResult={setSearchResult}
+                  searchResult={searchResult}
+                  setSelectedResult={setSelectedResult}
+                />
+              </Route>
+              <Route exact path="/movie/:id">
+                <MovieInfo
+                  searchResult={searchResult}
+                  user={user}
+                  handleAddToWatch={handleAddToWatch}
+                  userInfo={userInfo}
+                  selectedResult={selectedResult}
+                  API={API}
+                  isLoggedIn={isLoggedIn}
+                  setBtnClick={setBtnClick}
+                />
+              </Route>
+              <Route exact path="/map">
+                <Map />
+              </Route>
+            </Switch>
           </div>
           <Footer />
         </Router>
