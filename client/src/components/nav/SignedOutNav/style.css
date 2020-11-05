@@ -33,7 +33,11 @@ ul {
   overflow: hidden;
   background-color: #f1f1f1;
 } */
-
+nav{
+  min-height: 10vh;
+  width: 100%;
+  background-color: red;
+}
 .menu input {
   display: none;
 }
@@ -46,14 +50,14 @@ ul {
 }
 .menu {
   color: white;
-  border-radius: 25px;
+  /* border-radius: 25px; */
   background-color: darkslategray;
   padding: 10px;
-  padding-top: 20px;
-
+  /* padding-top: 20px; */
+  z-index: 1;
   position: fixed;
-  top: 100px;
-  left: 20px;
+  top: 0;
+  left: 0;
   min-width: 40px;
   min-height: 40px;
   overflow: hidden;

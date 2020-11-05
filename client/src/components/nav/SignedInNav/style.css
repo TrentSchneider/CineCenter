@@ -18,10 +18,10 @@
 }
 .menu {
   color: white;
-  border-radius: 25px;
+  /* border-radius: 25px; */
   background-color: darkslategray;
   padding: 10px;
-  padding-top: 20px;
+  /* padding-top: 20px; */
 
   position: fixed;
   top: 100px;

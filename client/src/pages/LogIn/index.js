@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "./style.css";
+
 
 function LogIn(props) {
   const [loginEmail, setLoginEmail] = useState("test4@test.com");

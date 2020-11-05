@@ -80,70 +80,73 @@ import "./style.css";
 
 function DropMenu(props) {
   return (
-    <div className="menu">
-      <input type="checkbox" id="menuToggle" />
-      <label for="menuToggle">
-        <span>
-          <h5>Menu</h5>
-        </span>
-        <span>
-          <h5>Menu</h5>
-        </span>
-      </label>
+    <nav>
+      <h1 className="text-center">CineCenter</h1>
+      <div className="menu">
+        <input type="checkbox" id="menuToggle" />
+        <label htmlFor="menuToggle">
+          <span>
+            <h5>Menu</h5>
+          </span>
+          <span>
+            <h5>Menu</h5>
+          </span>
+        </label>
 
-      <ul>
-        <li className="card">
-          <Link
-            to={{
-              pathname: "/home",
-              state: { isLoggedIn: true, user: true }
-            }}
-          >
-            Home
-          </Link>
-        </li>
-        <li className="card">
-          <Link
-            to={{
-              pathname: "/moviesearch",
-              state: { isLoggedIn: true, user: true }
-            }}
-          >
-            Movie Search
-          </Link>
-        </li>
-        <li className="card">
-          <Link
-            to={{
-              pathname: "/map",
-              state: { isLoggedIn: true, user: true }
-            }}
-          >
-            Find Nearby Theaters
-          </Link>
-        </li>
-        <li className="card">
-          <Link
-            to={{
-              pathname: "/login",
-              state: { isLoggedIn: true, user: true }
-            }}
-          >
-            Sign In
-          </Link>
-        </li>
-        <li className="card">
-          <Link
-            to={{
-              pathname: "/signup",
-              state: { isLoggedIn: true, user: true }
-            }}
-          >
-            Sign Up
-          </Link>
-        </li>
-      </ul>
-    </div>
+        <ul>
+          <li className="card">
+            <Link
+              to={{
+                pathname: "/home",
+                state: { isLoggedIn: true, user: true }
+              }}
+            >
+              Home
+            </Link>
+          </li>
+          <li className="card">
+            <Link
+              to={{
+                pathname: "/moviesearch",
+                state: { isLoggedIn: true, user: true }
+              }}
+            >
+              Movie Search
+            </Link>
+          </li>
+          <li className="card">
+            <Link
+              to={{
+                pathname: "/map",
+                state: { isLoggedIn: true, user: true }
+              }}
+            >
+              Find Nearby Theaters
+            </Link>
+          </li>
+          <li className="card">
+            <Link
+              to={{
+                pathname: "/login",
+                state: { isLoggedIn: true, user: true }
+              }}
+            >
+              Sign In
+            </Link>
+          </li>
+          <li className="card">
+            <Link
+              to={{
+                pathname: "/signup",
+                state: { isLoggedIn: true, user: true }
+              }}
+            >
+              Sign Up
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 }
 

@@ -7,7 +7,7 @@ function DropMenu(props) {
   return (
     <div className="menu">
       <input type="checkbox" id="menuToggle" />
-      <label for="menuToggle">
+      <label htmlFor="menuToggle">
         <span>
           <h5>Menu</h5>
         </span>

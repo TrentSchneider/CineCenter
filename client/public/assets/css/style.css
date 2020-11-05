@@ -2,9 +2,12 @@
   background-color: #333333;
   color: white;
 }
-.backH {
+/* .backH {
   min-height: 80vh;
-}
+} */
 .bf {
   color: black;
+}
+.layer {
+  min-height: 85vh;
 }
