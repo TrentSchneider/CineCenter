@@ -6,7 +6,7 @@ import {
   Route,
   Switch
 } from "react-router-dom";
-import Header from "./components/Header";
+// import Header from "./components/Header";
 import SignedInNav from "./components/Nav/SignedInNav";
 import SignedOutNav from "./components/Nav/SignedOutNav";
 import Footer from "./components/Footer";
