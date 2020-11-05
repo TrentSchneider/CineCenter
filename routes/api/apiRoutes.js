@@ -58,7 +58,9 @@ router.get("/lists", (req, res) => {
 
 // Route for logging user out
 router.get("/logout", (req, res) => {
-  req.session.destroy(function (err) {});
+  req.session.destroy(function (err) {
+    res.end();
+  });
 });
 
 // movie schema = Movie
@@ -77,15 +79,13 @@ router.route("/towatch/add").put((req, res) => {
 router.route("/towatch/move").put((req, res) => {
   let { imdbID } = req.body.data;
   let movieData = req.body.data;
-  console.log("route data");
+  // console.log("route data", movieData);
   User.updateOne({ _id: req.user.id }, { $pull: { towatch: { imdbID } } })
     .then(response => {
       console.log("movie data", movieData);
-      User.updateOne(
-        { _id: req.user.id },
-        { $push: { watched: { movieData } } }
-      )
+      User.updateOne({ _id: req.user.id }, { $push: { watched: movieData } })
         .then(data => {
+          console.log("data", data);
           res.json(data);
         })
     })

@@ -50,13 +50,7 @@ function DropMenu(props) {
                     </Link>
                   </li>
                   <li className="card">
-                    <Link
-                      to={{
-                        pathname: "/api/logout",
-                        state: { isLoggedIn: true, user: true }
-                      }}
-                      onClick={() => props.handleLogoutClick()}
-                    >
+                    <Link onClick={() => props.handleLogoutClick()} to="/">
                       Logout
                     </Link>
                   </li>
