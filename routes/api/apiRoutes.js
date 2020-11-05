@@ -77,10 +77,10 @@ router.route("/towatch/add").put((req, res) => {
 router.route("/towatch/move").put((req, res) => {
   let { imdbID } = req.body.data;
   let movieData = req.body.data;
-  console.log("route data", movieData);
+  console.log("route data");
   User.updateOne({ _id: req.user.id }, { $pull: { towatch: { imdbID } } })
-    .then(res => {
-      console.log.log("movie data", movieData);
+    .then(response => {
+      console.log("movie data", movieData);
       User.updateOne(
         { _id: req.user.id },
         { $push: { watched: { movieData } } }
@@ -88,7 +88,6 @@ router.route("/towatch/move").put((req, res) => {
         .then(data => {
           res.json(data);
         })
-        .catch(err => res.send(err));
     })
     .catch(err => res.send(err));
 });
