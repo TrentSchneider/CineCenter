@@ -1,4 +1,4 @@
-import API from "./MAP_PW.js";
+// import API from "./MAP_PW.js";
 import React, { Component, createRef } from "react";
 import ReactDOM from "react-dom";
 import GoogleMapReact from "google-map-react";
@@ -16,7 +16,7 @@ class GoogleMap extends Component {
   componentDidMount() {
     const googleMapScript = document.createElement("script");
 
-    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${API}&libraries=places`;
+    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API}&libraries=places`;
 
     window.document.body.appendChild(googleMapScript);
 
