@@ -16,6 +16,8 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-google-maps": "^9.4.5",
+    "react-player": "^2.6.2",
+    "react-responsive-carousel": "^3.2.10",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "recompose": "^0.30.0"
