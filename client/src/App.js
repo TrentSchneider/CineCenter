@@ -111,7 +111,7 @@ function App() {
           <div className="layer">
             <Switch>
               <Route exact path={["/", "/home"]}>
-                <Home user={user} />
+                <Home user={user} API={API} />
               </Route>
               <Route exact path="/watchlist">
                 <WatchList
@@ -156,7 +156,7 @@ function App() {
                 />
               </Route>
               <Route exact path="/map">
-                <Map />
+                <Map API={API} />
               </Route>
             </Switch>
           </div>
@@ -174,7 +174,7 @@ function App() {
           <div className="layer backH">
             <Switch>
               <Route exact path={["/", "/home"]}>
-                <Home />
+                <Home API={API} />
               </Route>
               <Route exact path="/login">
                 <LogIn
@@ -222,7 +222,7 @@ function App() {
                 />
               </Route>
               <Route exact path="/map">
-                <Map />
+                <Map API={API} />
               </Route>
             </Switch>
           </div>
