@@ -13,7 +13,7 @@ function DropMenu(props) {
       >
         <span>&#9776;</span>
       </a>
-      <a href="javascript:void(0);" class="ic close"></a>
+      <a href="javascript:void(0);" className="ic close"></a>
       <ul className="main-nav">
         <li className="top-level-link">
           <a className="mega-menu">
