@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
 
-
 function SignUp(props) {
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
@@ -27,10 +26,12 @@ function SignUp(props) {
 
   return (
     <div className="container">
-      <div className="card">
+      <div className="card p-1">
         <form className="signup">
           <div className="form-group">
-            <label htmlFor="inputEmail">Email address</label>
+            <label htmlFor="inputEmail" className="bf mb-0 mt-3">
+              <h5>Email address:</h5>
+            </label>
             <input
               type="text"
               className="form-control"
@@ -38,9 +39,10 @@ function SignUp(props) {
               placeholder="Email"
               onChange={e => setRegisterEmail(e.target.value)}
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="inputUsername">Username</label>
+
+            <label htmlFor="inputUsername" className="bf mb-0 mt-1">
+              <h5>Username:</h5>
+            </label>
             <input
               type="text"
               className="form-control"
@@ -48,9 +50,10 @@ function SignUp(props) {
               placeholder="Username"
               onChange={e => setRegisterUsername(e.target.value)}
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="inputPassword">Password</label>
+
+            <label htmlFor="inputPassword" className="bf mb-0 mt-1">
+              <h5>Password:</h5>
+            </label>
             <input
               type="text"
               className="form-control"
@@ -61,7 +64,7 @@ function SignUp(props) {
           </div>
           <button
             type="submit"
-            className="btn btn-default"
+            className="btn btn-dark"
             onClick={handleRegisterClick}
           >
             Sign Up

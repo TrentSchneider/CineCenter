@@ -7,20 +7,24 @@ function MovieSearch(props) {
 
   function handleSearchClick(event) {
     event.preventDefault();
-    props.API.searchMovie(searchMovie)
-      .then(res => {
-        props.setSearchResult(res.data);
-      })
-      .catch(err => console.log("err", err));
+    if (searchMovie !== "") {
+      props.API.searchMovie(searchMovie)
+        .then(res => {
+          props.setSearchResult(res.data);
+        })
+        .catch(err => console.log("err", err));
+    }
   }
 
   console.log("data", props.searchResult);
   return (
     <div className="d-flex justify-content-center minH-6">
-      <div className="card col-8 minH-8-5 ">
+      <div className="card col-8 minH-8-5 bc-lg">
         <form>
-          <div className="form-group">
-            <label htmlFor="inputMovie">Movie Title</label>
+          <div className="form-group mt-3">
+            <label htmlFor="inputMovie" className="bf">
+              <h3> Search Movie Title</h3>
+            </label>
             <input
               type="text"
               className="form-control"
@@ -29,19 +33,17 @@ function MovieSearch(props) {
               placeholder="Movie Title"
               onChange={e => setSearchMovie(e.target.value)}
             />
-            <small id="inputMovieHelp" className="form-text text-muted">
-              Search:
-            </small>
           </div>
           <button
             type="submit"
-            className="btn btn-primary"
+            className="btn btn-dark mb-2"
             onClick={handleSearchClick}
           >
             Submit
           </button>
         </form>
         <MovieResult
+          searchMovie={searchMovie}
           searchResult={props.searchResult}
           setSelectedResult={props.setSelectedResult}
         />

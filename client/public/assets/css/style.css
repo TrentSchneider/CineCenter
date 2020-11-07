@@ -8,9 +8,32 @@
 .bf {
   color: black;
 }
-.layer {
-  min-height: 85vh;
+p,
+h1,
+h3,
+h4,
+h5 {
+  font-family: "Open Sans Condensed", sans-serif;
 }
-nav{
+.resH {
+  height: 295px;
+}
+.layer {
+  margin-top: 65px;
+  margin-bottom: 60px;
+  padding-top: 10px;
+  min-height: 90vh;
+  width: 100%;
+}
+nav {
   background-color: #ff9933;
 }
+/* .wrapper {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  padding: 20px;
+  justify-content: space-around;
+  align-content: flex-start;
+  overflow: auto;
+} */

@@ -7,3 +7,7 @@
 .bf {
   color: black;
 }
+.carCent {
+  margin-left: auto;
+  margin-right: auto;
+}
