@@ -41,10 +41,8 @@ router.get("/user", (req, res) => {
   // );
   if (req.user) {
     res.json({ user: req.user });
-    console.log("user found");
   } else {
     res.json({ user: null });
-    console.log("user not found");
   }
 });
 
@@ -66,7 +64,6 @@ router.get("/logout", (req, res) => {
 // movie schema = Movie
 router.route("/towatch/add").put((req, res) => {
   let data = req.body.data;
-  console.log("req.user", req.user);
   User.updateOne({ _id: req.user.id }, { $push: { towatch: data } })
     .then(data => {
       res.json(data);
@@ -79,13 +76,10 @@ router.route("/towatch/add").put((req, res) => {
 router.route("/towatch/move").put((req, res) => {
   let { imdbID } = req.body.data;
   let movieData = req.body.data;
-  // console.log("route data", movieData);
   User.updateOne({ _id: req.user.id }, { $pull: { towatch: { imdbID } } })
     .then(response => {
-      console.log("movie data", movieData);
       User.updateOne({ _id: req.user.id }, { $push: { watched: movieData } })
         .then(data => {
-          console.log("data", data);
           res.json(data);
         })
     })
@@ -104,10 +98,7 @@ router.route("/watched/add").put((req, res) => {
 });
 
 router.route("/towatch/remove").put((req, res) => {
-  console.log("towatch remove route reached");
   let { imdbID } = req.body.data;
-  console.log("req.body", req.body);
-  console.log("req.user.id", req.user.id);
   User.updateOne({ _id: req.user.id }, { $pull: { towatch: { imdbID } } })
     .then(data => {
       res.json(data);

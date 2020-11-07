@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function MovieResult(props) {
-  console.log("movie component data", props.searchResult);
   if (props.searchResult.length === 0) {
     return (
       <div className="card col-12 bf text-center">

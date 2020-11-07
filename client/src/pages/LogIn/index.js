@@ -8,7 +8,6 @@ function LogIn(props) {
   function handleLoginClick(event) {
     event.preventDefault();
     props.API.login(loginEmail, loginPassword).then(res => {
-      console.log(res.data);
       props.setUser({
         id: res.data._id,
         username: res.data.username
@@ -17,7 +16,6 @@ function LogIn(props) {
         towatch: res.data.towatch,
         watched: res.data.watched
       });
-      console.log("user after login", props.user);
       props.setIsLoggedIn(true);
     });
   }

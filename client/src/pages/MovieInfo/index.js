@@ -12,29 +12,17 @@ function MovieInfo(props) {
     imdbID: ""
   });
   useEffect(() => {
-    console.log("movie state", movieResults);
-    console.log("movie info props", props);
     if (props.isLoggedIn) {
       props.userLists();
     }
   }, [movieResults]);
   useEffect(() => {
-    console.log("running");
-    console.log("selectedResults", props.selectedResult);
     props.API.findMovie(movieID).then(res => {
-      console.log("find movie res", res);
       setMovieResults(res.data);
     });
   }, []);
-  console.log("movie info", props.movieResults);
-  console.log("Movie ID", movieID);
-  console.log("user", props.user);
-  console.log("movie lists", props.lists);
   let addBtn;
   if (props.isLoggedIn) {
-    console.log("isLoggedIn for movie button", props.isLoggedIn);
-    console.log("movie results", movieResults);
-    console.log("movie lists", props.lists);
     props.lists.towatch.forEach(e => {
       if (movieResults.imdbID === e.imdbID) {
         addBtn = (
@@ -60,7 +48,6 @@ function MovieInfo(props) {
       );
     }
 
-    console.log("final movieResults", movieResults);
 
     return (
       <div className="d-flex justify-content-center">

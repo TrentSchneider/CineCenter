@@ -8,7 +8,6 @@ function WatchList(props) {
     props.userLists();
   }, []);
 
-  console.log("watchlist user", props.user);
   return (
     <div className="d-flex justify-content-center">
       <div className="card  col-sm-12 col-md-8 ">

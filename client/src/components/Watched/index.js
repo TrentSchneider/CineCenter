@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Watched(props) {
-  console.log("props.watchedList", props.lists.watched);
   return (
     <div className="card col-5 bf lg mt-1 mb-1">
       <h1 className="text-center">Watched List</h1>

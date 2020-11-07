@@ -16,7 +16,6 @@ function MovieSearch(props) {
     }
   }
 
-  console.log("data", props.searchResult);
   return (
     <div className="d-flex justify-content-center minH-6">
       <div className="card col-8 minH-8-5 bc-lg">

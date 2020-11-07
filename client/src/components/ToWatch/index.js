@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function ToWatch(props) {
-  console.log("props.toWatchList", props.lists.towatch);
   return (
     <div className="card col-5 bf lg mt-1 mb-1">
       <h1 className="text-center">To Watch List</h1>
