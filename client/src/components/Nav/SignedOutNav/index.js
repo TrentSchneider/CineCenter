@@ -43,7 +43,7 @@ function DropMenu(props) {
                       Movie Search
                     </Link>
                   </li>
-                  <li className="card mb-1 pt-1 pb-1 pl-2">
+                  {/* <li className="card mb-1 pt-1 pb-1 pl-2">
                     <Link
                       className="bf"
                       to={{
@@ -53,7 +53,7 @@ function DropMenu(props) {
                     >
                       Find Nearby Theaters
                     </Link>
-                  </li>
+                  </li> */}
                   <li className="card mb-1 pt-1 pb-1 pl-2">
                     <Link
                       className="bf"

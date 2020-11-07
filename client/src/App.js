@@ -146,9 +146,9 @@ function App() {
                   setBtnClick={setBtnClick}
                 />
               </Route>
-              <Route exact path="/map">
+              {/* <Route exact path="/map">
                 <Map API={API} />
-              </Route>
+              </Route> */}
             </Switch>
           </div>
           <Footer />
@@ -211,9 +211,9 @@ function App() {
                   setBtnClick={setBtnClick}
                 />
               </Route>
-              <Route exact path="/map">
+              {/* <Route exact path="/map">
                 <Map API={API} />
-              </Route>
+              </Route> */}
             </Switch>
           </div>
           <Footer />
