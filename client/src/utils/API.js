@@ -1,5 +1,5 @@
 import axios from "axios";
-import Map_PW from "../pages/Map/MAP_PW";
+// import Map_PW from "../pages/Map/MAP_PW";
 
 require("dotenv").config();
 
@@ -129,7 +129,7 @@ export default {
     console.log("key", key);
     let queryURL =
       "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=10&playlistId=PLScC8g4bqD47c-qHlsfhGH3j6Bg7jzFy-&key=" +
-      Map_PW;
+      key;
     console.log("trailer path reached");
     return axios.get(queryURL);
   }
