@@ -4,13 +4,7 @@ import "./style.css";
 
 function MovieInfo(props) {
   const [movieID, setMovieID] = useState(useParams().id);
-  const [movieResults, setMovieResults] = useState({
-    Title: "test",
-    Year: "1234",
-    Poster: "",
-    Plot: "asfasdfsafsf",
-    imdbID: ""
-  });
+  const [movieResults, setMovieResults] = useState({});
   useEffect(() => {
     if (props.isLoggedIn) {
       props.userLists();

@@ -8,8 +8,16 @@ function SignUp(props) {
 
   function handleRegisterClick(event) {
     event.preventDefault();
-    props.API.register(registerUsername, registerEmail, registerPassword).then(
-      () => {
+    if (
+      registerUsername !== "" ||
+      registerEmail !== "" ||
+      registerPassword !== ""
+    ) {
+      props.API.register(
+        registerUsername,
+        registerEmail,
+        registerPassword
+      ).then(() => {
         props.API.login(registerEmail, registerPassword).then(res => {
           props.setUser({
             id: res.data._id,
@@ -20,8 +28,8 @@ function SignUp(props) {
           });
           props.setIsLoggedIn(true);
         });
-      }
-    );
+      });
+    }
   }
 
   return (

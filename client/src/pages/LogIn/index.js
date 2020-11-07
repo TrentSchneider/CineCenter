@@ -2,22 +2,24 @@ import React, { useState } from "react";
 import "./style.css";
 
 function LogIn(props) {
-  const [loginEmail, setLoginEmail] = useState("test4@test.com");
-  const [loginPassword, setLoginPassword] = useState("password");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
   function handleLoginClick(event) {
     event.preventDefault();
-    props.API.login(loginEmail, loginPassword).then(res => {
-      props.setUser({
-        id: res.data._id,
-        username: res.data.username
+    if (loginEmail !== "" || loginPassword !== "") {
+      props.API.login(loginEmail, loginPassword).then(res => {
+        props.setUser({
+          id: res.data._id,
+          username: res.data.username
+        });
+        props.setLists({
+          towatch: res.data.towatch,
+          watched: res.data.watched
+        });
+        props.setIsLoggedIn(true);
       });
-      props.setLists({
-        towatch: res.data.towatch,
-        watched: res.data.watched
-      });
-      props.setIsLoggedIn(true);
-    });
+    }
   }
 
   return (

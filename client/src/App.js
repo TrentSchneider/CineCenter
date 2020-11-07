@@ -21,10 +21,7 @@ import API from "./utils/API";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState({
-    id: "testID",
-    username: "testUsername"
-  });
+  const [user, setUser] = useState({});
   const [lists, setLists] = useState({
     towatch: [{ Title: "test1" }, { Title: "test2" }],
     watched: [{ Title: "test4" }, { Title: "test4" }]
@@ -51,26 +48,6 @@ function App() {
     });
   }
 
-  function handleAddToWatch(data) {
-    // setAddToWatch(user.id,searchResult.Title,searchResult.Poster );
-    API.addToWatch(data).then(res => {
-    });
-  }
-
-  function handleMoveToWatched(data) {
-    API.moveToWatch(data).then(res => {
-    });
-  }
-
-  function handleDeleteToWatch(data) {
-    API.deleteToWatch(data).then(res => {
-    });
-  }
-
-  function handleDeleteWatched(data) {
-    API.deleteWatched(data).then(res => {
-    });
-  }
   function userLists() {
     API.getLists().then(res => {
       setLists({
@@ -110,9 +87,6 @@ function App() {
                   lists={lists}
                   setLists={setLists}
                   user={user}
-                  handleDeleteToWatch={handleDeleteToWatch}
-                  handleMoveToWatched={handleMoveToWatched}
-                  handleDeleteWatched={handleDeleteWatched}
                   setBtnClick={setBtnClick}
                   btnClick={btnClick}
                 />
@@ -139,7 +113,6 @@ function App() {
                   setLists={setLists}
                   searchResult={searchResult}
                   user={user}
-                  handleAddToWatch={handleAddToWatch}
                   userInfo={userInfo}
                   selectedResult={selectedResult}
                   API={API}
@@ -168,9 +141,6 @@ function App() {
               </Route>
               <Route exact path="/login">
                 <LogIn
-                  // handleLoginClick={handleLoginClick}
-                  // setLoginEmail={setLoginEmail}
-                  // setLoginPassword={setLoginPassword}
                   API={API}
                   user={user}
                   setUser={setUser}
@@ -203,7 +173,6 @@ function App() {
                 <MovieInfo
                   searchResult={searchResult}
                   user={user}
-                  handleAddToWatch={handleAddToWatch}
                   userInfo={userInfo}
                   selectedResult={selectedResult}
                   API={API}
