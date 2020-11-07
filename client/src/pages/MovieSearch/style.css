@@ -4,6 +4,10 @@
 .minH-600 {
   min-height: 600px;
 }
-.card {
-  background-color: lightgray;
+.bc-lg {
+  background-color: rgb(243, 242, 242);
+}
+img {
+  margin-left: auto;
+  margin-right: auto;
 }

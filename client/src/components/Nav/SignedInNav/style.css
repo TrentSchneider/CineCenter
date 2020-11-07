@@ -54,7 +54,11 @@ header.light {
 
 /* Navigation Styles */
 nav {
-  position: relative;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  height: 65px;
+  width: 100%;
 }
 header.dark nav {
   background-color: rgba(255, 255, 255, 0.5);
@@ -156,6 +160,10 @@ ul.main-nav > li ul.sub-menu-lists > li > a {
   padding-top: 15px;
 }
 
+.curve {
+  border-radius: 15px;
+}
+
 @media only screen and (max-width: 768px) {
   .sub-menu-head {
     color: orange;
@@ -214,8 +222,6 @@ ul.main-nav > li ul.sub-menu-lists > li > a {
     outline: none;
   }
 
-  
-  
   /* .ic.menu:focus ~ .ic.close { opacity: 1.0; z-index : 21;  }
   .ic.close:focus { opacity: 0; }
   */
@@ -252,7 +258,7 @@ ul.main-nav > li ul.sub-menu-lists > li > a {
 
   .ic.menu:focus ~ .main-nav {
     width: 300px;
-    background-color: white;
+    background-color: grey;
   }
 
   ul.main-nav > * {
@@ -278,7 +284,6 @@ ul.main-nav > li ul.sub-menu-lists > li > a {
   }
   ul.main-nav > li {
     display: block;
-    border-bottom: 1px solid #444;
   }
 
   ul.main-nav > li > a {
@@ -286,7 +291,7 @@ ul.main-nav > li ul.sub-menu-lists > li > a {
   }
 
   ul.main-nav > li ul.sub-menu-lists > li a {
-    color: #eee;
+    color:black;
     font-size: 14px;
   }
   .sub-menu-head {
@@ -322,7 +327,13 @@ ul.main-nav > li ul.sub-menu-lists > li > a {
     border-top: 1px solid #444;
   }
 }
-
+.logo {
+  position: fixed;
+  top: 3px;
+  right: 46%;
+  height: 60px;
+  width: auto;
+}
 @media only screen and (min-width: 769px) {
   .ic.menu {
     display: none;
@@ -424,6 +435,7 @@ ul.main-nav > li ul.sub-menu-lists > li > a {
   /* Drop Down/Up Arrow for Mega Menu */
   ul.main-nav > li > a.mega-menu > span {
     display: block;
+    color: black;
     /* vertical-align: middle; */
   }
   ul.main-nav > li > a.mega-menu > span:after {
