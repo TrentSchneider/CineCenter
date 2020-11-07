@@ -4,21 +4,26 @@ import { Link } from "react-router-dom";
 function DropMenu(props) {
   return (
     <nav role="navigation">
-      <a href="javascript:void(0);" class="ic menu" tabindex="1">
-        
+      <a
+        href="javascript:void(0);"
+        className="ic menu btn-dark curve"
+        tabIndex="1"
+      >
+        <span>&#9776;</span>
       </a>
-      <a href="javascript:void(0);" class="ic close"></a>
-      <ul class="main-nav">
-        <li class="top-level-link">
-          <a class="mega-menu">
+      <a href="javascript:void(0);" className="ic close"></a>
+      <ul className="main-nav">
+        <li className="top-level-link">
+          <a className="mega-menu">
             <span>Menu</span>
           </a>
-          <div class="sub-menu-block col-sm-4 col-12">
-            <div class="row">
-              <div class="col-11">
-                <ul class="sub-menu-lists">
-                  <li className="card">
+          <div className="sub-menu-block col-sm-4 col-12">
+            <div className="row">
+              <div className="col-11">
+                <ul className="sub-menu-lists">
+                  <li className="card mb-1 pt-1 pb-1 pl-2">
                     <Link
+                      className="bf"
                       to={{
                         pathname: "/home",
                         state: { isLoggedIn: true, user: true }
@@ -27,8 +32,9 @@ function DropMenu(props) {
                       Home
                     </Link>
                   </li>
-                  <li className="card">
+                  <li className="card mb-1 pt-1 pb-1 pl-2">
                     <Link
+                      className="bf"
                       to={{
                         pathname: "/moviesearch",
                         state: { isLoggedIn: true, user: true }
@@ -37,8 +43,9 @@ function DropMenu(props) {
                       Movie Search
                     </Link>
                   </li>
-                  <li className="card">
+                  <li className="card mb-1 pt-1 pb-1 pl-2">
                     <Link
+                      className="bf"
                       to={{
                         pathname: "/map",
                         state: { isLoggedIn: true, user: true }
@@ -47,8 +54,9 @@ function DropMenu(props) {
                       Find Nearby Theaters
                     </Link>
                   </li>
-                  <li className="card">
+                  <li className="card mb-1 pt-1 pb-1 pl-2">
                     <Link
+                      className="bf"
                       to={{
                         pathname: "/login",
                         state: { isLoggedIn: true, user: true }
@@ -57,8 +65,9 @@ function DropMenu(props) {
                       Sign In
                     </Link>
                   </li>
-                  <li className="card">
+                  <li className="card pt-1 pb-1 pl-2">
                     <Link
+                      className="bf"
                       to={{
                         pathname: "/signup",
                         state: { isLoggedIn: true, user: true }
@@ -73,6 +82,10 @@ function DropMenu(props) {
           </div>
         </li>
       </ul>
+      <img
+        className="logo"
+        src="../../../../assets/images/CineCenterLogo.png"
+      />
     </nav>
   );
 }

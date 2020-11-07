@@ -28,62 +28,28 @@ function Home(props) {
   console.log("trailers", trailers);
   console.log("trailer ids", trailerURL);
   return (
-    <div className="d-flex justify-content-center backC minH-600">
-      <div className="card col-8 minH-8">
-        <h1 className="bf">Trailers</h1>
-        <Carousel
-          showArrows={true}
-          // onChange={onChange}
-          // onClickItem={onClickItem}
-          // onClickThumb={onClickThumb}
-        >
-          {trailerURL.map((data, i) => (
-            <div>
-              <ReactPlayer url={data} key={i} />
-            </div>
-          ))}
-        </Carousel>
+    <div className="d-flex justify-content-center backC minH-600 pb-5">
+      <div className="card col-sm-12 col-md-8">
+        <h1 className="bf text-center m-4">
+          <u>Trailers</u>
+        </h1>
+        <div className="col-sm-12 col-md-8 carCent">
+          <Carousel
+            showArrows={true}
+            // onChange={onChange}
+            // onClickItem={onClickItem}
+            // onClickThumb={onClickThumb}
+          >
+            {trailerURL.map((data, i) => (
+              <div className="d-flex justify-content-center" key={i}>
+                <ReactPlayer url={data} />
+              </div>
+            ))}
+          </Carousel>
+        </div>
       </div>
     </div>
   );
 }
 
 export default Home;
-
-// class TrailerCarousel extends Component {
-//   render() {
-//     return (
-//       <Carousel
-//         showArrows={true}
-//         // onChange={onChange}
-//         // onClickItem={onClickItem}
-//         // onClickThumb={onClickThumb}
-//       >
-//         <div>
-//           <img src="assets/1.jpeg" />
-//           <p className="legend">Legend 1</p>
-//         </div>
-//         <div>
-//           <img src="assets/2.jpeg" />
-//           <p className="legend">Legend 2</p>
-//         </div>
-//         <div>
-//           <img src="assets/3.jpeg" />
-//           <p className="legend">Legend 3</p>
-//         </div>
-//         <div>
-//           <img src="assets/4.jpeg" />
-//           <p className="legend">Legend 4</p>
-//         </div>
-//         <div>
-//           <img src="assets/5.jpeg" />
-//           <p className="legend">Legend 5</p>
-//         </div>
-//         <div>
-//           <img src="assets/6.jpeg" />
-//           <p className="legend">Legend 6</p>
-//         </div>
-//       </Carousel>
-//     );
-//   }
-// }

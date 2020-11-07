@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
 
-
 function LogIn(props) {
   const [loginEmail, setLoginEmail] = useState("test4@test.com");
   const [loginPassword, setLoginPassword] = useState("password");
@@ -25,10 +24,12 @@ function LogIn(props) {
 
   return (
     <div className="container">
-      <div className="card">
+      <div className="card p-1">
         <form className="login">
           <div className="form-group">
-            <label htmlFor="exampleInputEmail1">Email address</label>
+            <label htmlFor="exampleInputEmail1" className="bf mt-3 mb-0">
+              <h5>Email address:</h5>
+            </label>
             <input
               type="email"
               className="form-control"
@@ -36,9 +37,10 @@ function LogIn(props) {
               placeholder="Email"
               onChange={e => setLoginEmail(e.target.value)}
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Password</label>
+
+            <label htmlFor="passwordImput" className="bf mb-0 mt-1">
+              <h5>Password:</h5>
+            </label>
             <input
               type="password"
               className="form-control"
@@ -47,7 +49,7 @@ function LogIn(props) {
               onChange={e => setLoginPassword(e.target.value)}
             />
           </div>
-          <button className="btn btn-default" onClick={handleLoginClick}>
+          <button className="btn btn-dark" onClick={handleLoginClick}>
             Login
           </button>
         </form>

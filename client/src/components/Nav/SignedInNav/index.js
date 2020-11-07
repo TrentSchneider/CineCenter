@@ -6,21 +6,26 @@ import "./style.css";
 function DropMenu(props) {
   return (
     <nav role="navigation">
-      {/* <a href="javascript:void(0);" class="ic menu" tabindex="1">
-        
+      <a
+        href="javascript:void(0);"
+        className="ic menu btn-dark curve"
+        tabIndex="1"
+      >
+        <span>&#9776;</span>
       </a>
-      <a href="javascript:void(0);" class="ic close"></a> */}
-      <ul class="main-nav">
-        <li class="top-level-link">
-          <a class="mega-menu">
+      <a href="javascript:void(0);" class="ic close"></a>
+      <ul className="main-nav">
+        <li className="top-level-link">
+          <a className="mega-menu">
             <span>Menu</span>
           </a>
-          <div class="sub-menu-block">
-            <div class="row">
-              <div class="col-md-4 col-lg-4 col-sm-4">
-                <ul class="sub-menu-lists">
-                  <li className="card">
+          <div className="sub-menu-block">
+            <div className="row">
+              <div className="col-md-2 col-lg-2 col-sm-4">
+                <ul className="sub-menu-lists">
+                  <li className="card mb-1 pt-1 pb-1 pl-2">
                     <Link
+                      className="bf"
                       to={{
                         pathname: "/home",
                         state: { isLoggedIn: true, user: true }
@@ -29,8 +34,9 @@ function DropMenu(props) {
                       Home
                     </Link>
                   </li>
-                  <li className="card">
+                  <li className="card mb-1 pt-1 pb-1 pl-2">
                     <Link
+                      className="bf"
                       to={{
                         pathname: "/moviesearch",
                         state: { isLoggedIn: true, user: true }
@@ -39,8 +45,9 @@ function DropMenu(props) {
                       Movie Search
                     </Link>
                   </li>
-                  <li className="card">
+                  <li className="card mb-1 pt-1 pb-1 pl-2">
                     <Link
+                      className="bf"
                       to={{
                         pathname: "/watchlist",
                         state: { isLoggedIn: true, user: true }
@@ -49,8 +56,12 @@ function DropMenu(props) {
                       Movie Lists
                     </Link>
                   </li>
-                  <li className="card">
-                    <Link onClick={() => props.handleLogoutClick()} to="/">
+                  <li className="card pt-1 pb-1 pl-2">
+                    <Link
+                      className="bf"
+                      onClick={() => props.handleLogoutClick()}
+                      to="/"
+                    >
                       Logout
                     </Link>
                   </li>
@@ -60,6 +71,10 @@ function DropMenu(props) {
           </div>
         </li>
       </ul>
+      <img
+        className="logo"
+        src="../../../../assets/images/CineCenterLogo.png"
+      />
     </nav>
   );
 }
