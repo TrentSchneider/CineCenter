@@ -1,92 +1,133 @@
-// import API from "./MAP_PW.js";
-import React, { Component, createRef } from "react";
-import ReactDOM from "react-dom";
-import GoogleMapReact from "google-map-react";
-import MapMarker from "../../components/MapMarker";
-import PlaceCard from "../../components/PlaceCard";
+import API_PW from "./MAP_PW.js";
+import React from "react";
+import {
+  compose,
+  withProps,
+  withHandlers,
+  withState,
+  withStateHandlers
+} from "recompose";
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+  InfoWindow
+} from "react-google-maps";
+import Window from "../../components/Window";
 
-/*global map google*/
-class GoogleMap extends Component {
-  get googleMapDiv() {
-    return document.getElementById("google-map");
-  }
+let lats = 37.54129,
+  lons = -77.434769;
+navigator.geolocation.getCurrentPosition(position => {
+  const { latitude, longitude } = position.coords;
 
-  googleMapRef = createRef();
+  lats = latitude;
+  lons = longitude;
+});
 
-  componentDidMount() {
-    const googleMapScript = document.createElement("script");
-    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API}&libraries=places`;
+/*global google*/
+const MyMapComponent = compose(
+  withProps({
+    googleMapURL:
+      "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=" +
+      // ,
+      API_PW,
 
-    window.document.body.appendChild(googleMapScript);
-
-    // googleMapScript.addEventListener("load", () => {
-    //   this.googleMap = this.createGoogleMap();
-    //   this.marker = this.createMarker();
-    // });
-  }
-
-  createGoogleMap = () => {
-    const center = { lat: 43.642567, lng: -79.387054 };
-    new window.google.maps.Map(this.googleMapRef.current, {
-      zoom: 16,
-      center: center,
-      disableDefaultUI: true
-    });
-    const request = {
-      location: center,
-      radius: "8047",
-      types: ["car_repair"]
+    loadingElement: <div style={{ height: `100%` }} />,
+    containerElement: <div style={{ height: `400px` }} />,
+    mapElement: <div style={{ height: `100%` }} />
+  }),
+  withStateHandlers(
+    () => ({
+      isOpen: null,
+      lati: 37.54129,
+      long: -77.434769
+    }),
+    {
+      onToggleOpen: ({ isOpen }) => index => ({
+        isOpen: index
+      }),
+      getLat: ({ lati }) => latitude => ({
+        lati: latitude
+      }),
+      getLon: ({ long }) => longitude => ({
+        long: longitude
+      })
+    }
+  ),
+  withScriptjs,
+  withGoogleMap,
+  withState("places", "updatePlaces", ""),
+  withHandlers(() => {
+    const refs = {
+      map: undefined
     };
-    // // uses the query to search near the map location and adds markers to the results
-    // var service = new google.maps.places.PlacesService(map);
-    // service.nearbySearch(request, callback);
-    // // the function to add markers to all result locations
-    // function callback(results, status) {
-    //   if (status == google.maps.places.PlacesServiceStatus.OK) {
-    //     console.log(results);
-    //     for (var i = 0; i < results.length; i++) {
-    //       createMarker(results[i]);
-    //     }
-    //   }
-    //   // the function to create the markers and attach them to the infowindows
-    //   function createMarker(place) {
-    //     const infowindow = new google.maps.InfoWindow();
 
-    //     var placeLoc = place.geometry.location;
-    //     var marker = new google.maps.Marker({
-    //       map: map,
-    //       position: place.geometry.location
-    //     });
-    //     google.maps.event.addListener(marker, "click", function () {
-    //       var urlName = place.name,
-    //         formName = urlName.replace(/\s/g, "+");
-    //       // inserts the location's name, address, rating, and link to driving directions to the location from the users's location
-    //       var windowContent = `<div id="content"> 
-    //         <div id="siteNotice"> 
-    //         </div>
-    //         <h5 id="firstHeading" class="firstHeading">${place.name}</h5>
-    //         <div id="bodyContent">
-    //         <p>Address: ${place.vicinity}</p>
-    //         <p>Average Rating: ${place.rating} out of 
-    //         ${place.user_ratings_total} reviews</p>" +
-    //         <a href="https://www.google.com/maps/dir/?api=1&destination=${formName}&destination_place_id=${place.place_id}>Get Directions</a>
-    //         </div>
-    //          </div>`;
-    //       infowindow.setContent(windowContent);
-    //       infowindow.open(map, this);
-    //     });
-    //   }
-    // }
-  };
+    return {
+      onMapMounted: () => ref => {
+        refs.map = ref;
+      },
 
+      fetchPlaces: ({ updatePlaces }) => {
+        let places;
+        const bounds = refs.map.getBounds();
+        const service = new google.maps.places.PlacesService(
+          refs.map.context.__SECRET_MAP_DO_NOT_USE_OR_YOU_WILL_BE_FIRED
+        );
+        const request = {
+          bounds: bounds,
+          type: ["movie_theater"]
+        };
+        service.nearbySearch(request, (results, status) => {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            console.log(results);
+            updatePlaces(results);
+          }
+        });
+      }
+    };
+  })
+)(props => {
+  let la, lo;
+  navigator.geolocation.getCurrentPosition(position => {
+    const { latitude, longitude } = position.coords;
+    props.getLat(latitude);
+    props.getLon(longitude);
+  });
+  return (
+    <div>
+      <GoogleMap
+        onTilesLoaded={props.fetchPlaces}
+        ref={props.onMapMounted}
+        // onBoundsChanged={props.fetchPlaces}
+        defaultZoom={10}
+        center={{ lat: props.lati, lng: props.long }}
+        options={{ draggable: true }}
+      >
+        {props.places &&
+          props.places.map((place, i) => (
+            <Marker
+              key={i}
+              position={{
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng()
+              }}
+              onClick={() => props.onToggleOpen(i)}
+            >
+              {props.isOpen === i && (
+                <InfoWindow onCloseClick={() => props.onToggleOpen(null)}>
+                  <Window place={place} />
+                </InfoWindow>
+              )}
+            </Marker>
+          ))}
+      </GoogleMap>
+    </div>
+  );
+});
+
+export default class MyFancyComponent extends React.PureComponent {
   render() {
-    return (
-      <div
-        id="google-map"
-        ref={this.googleMapRef}
-        style={{ width: "400px", height: "300px" }}
-      />
-    );
+    return <MyMapComponent />;
   }
 }
-export default GoogleMap;
