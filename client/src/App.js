@@ -16,7 +16,7 @@ import SignUp from "./pages/SignUp";
 import WatchList from "./pages/WatchList";
 import MovieSearch from "./pages/MovieSearch";
 import MovieInfo from "./pages/MovieInfo";
-import Map from "./pages/Map";
+import MapWrapper from "./pages/MapWrapper";
 import API from "./utils/API";
 
 function App() {
@@ -146,9 +146,9 @@ function App() {
                   setBtnClick={setBtnClick}
                 />
               </Route>
-              {/* <Route exact path="/map">
-                <Map API={API} />
-              </Route> */}
+              <Route exact path="/map">
+                <MapWrapper API={API} />
+              </Route>
             </Switch>
           </div>
           <Footer />
@@ -211,9 +211,9 @@ function App() {
                   setBtnClick={setBtnClick}
                 />
               </Route>
-              {/* <Route exact path="/map">
-                <Map API={API} />
-              </Route> */}
+              <Route exact path="/map">
+                <MapWrapper API={API} />
+              </Route>
             </Switch>
           </div>
           <Footer />
