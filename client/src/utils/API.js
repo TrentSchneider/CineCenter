@@ -102,20 +102,8 @@ export default {
       url: "/api/watched/remove"
     });
   },
-  getPlaces: function (latitude, longitude) {
-    const key = "";
-    // const key = process.env.REACT_APP_API;
-    let queryURL =
-      "https://maps.googleapis.com/maps/api/places/nearbysearch/json?location=" +
-      latitude +
-      "," +
-      longitude +
-      "&radius=16093&type=movie_theater&key=" +
-      key;
-    return axios.get(queryURL);
-  },
   getTrailers: function () {
-    // const key = "";
+    // const key = Map_PW;
     const key = process.env.REACT_APP_API;
     let queryURL =
       "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=10&playlistId=PLScC8g4bqD47c-qHlsfhGH3j6Bg7jzFy-&key=" +
