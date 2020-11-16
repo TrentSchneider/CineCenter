@@ -33,8 +33,8 @@ function SignUp(props) {
   }
 
   return (
-    <div className="container">
-      <div className="card p-1">
+    <div className="d-flex justify-content-center">
+      <div className="card col-sm-12 col-md-10 p-1">
         <form className="signup">
           <div className="form-group">
             <label htmlFor="inputEmail" className="bf mb-0 mt-3">

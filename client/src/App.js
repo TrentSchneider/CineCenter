@@ -95,7 +95,7 @@ function App() {
 
   if (isLoggedIn) {
     return (
-      <div className="backC">
+      <div>
         <Router>
           {/* <Header user={user} /> */}
           <SignedInNav handleLogoutClick={handleLogoutClick} />
@@ -157,7 +157,7 @@ function App() {
     );
   } else {
     return (
-      <div className="backC">
+      <div>
         <Router>
           {/* <Header /> */}
           <SignedOutNav />

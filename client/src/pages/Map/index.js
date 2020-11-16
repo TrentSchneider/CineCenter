@@ -34,7 +34,7 @@ const MyMapComponent = compose(
     // API_PW,
 
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
+    containerElement: <div style={{ height: `80%` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withStateHandlers(
