@@ -45,9 +45,9 @@ function MovieInfo(props) {
 
     return (
       <div className="d-flex justify-content-center">
-        <div className="card col-8">
+        <div className="card col-sm-12 col-md-10">
           <div className="card bf p-4">
-            <h4 className="text-center">{movieResults.Title}</h4>
+            <h4 className="text-center"><u>{movieResults.Title}</u></h4>
             <div className="d-flex justify-content-center">
               <img src={movieResults.Poster} alt={movieResults.Title} />
             </div>

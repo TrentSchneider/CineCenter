@@ -24,8 +24,8 @@ function Home(props) {
     setTrailerURL(data);
   }, [trailers]);
   return (
-    <div className="d-flex justify-content-center backC minH-600 pb-5">
-      <div className="card col-sm-12 col-md-8">
+    <div className="d-flex justify-content-center minH-600 pb-5">
+      <div className="card col-sm-12 col-md-10">
         <h1 className="bf text-center m-4">
           <u>Trailers</u>
         </h1>

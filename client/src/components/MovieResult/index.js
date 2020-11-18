@@ -10,32 +10,32 @@ function MovieResult(props) {
     );
   } else {
     return (
-      <div className="card col-12 bf">
-        <div className="container m-0 p-0">
-          <div className="row m-0 p-0">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 mt-3">
+            {/* <div className="card-deck"> */}
             {props.searchResult.Search.map((data, i) => (
-              <Link
-                className="col-3"
-                to={{
-                  pathname: "/movie/" + data.imdbID,
-                  state: { isLoggedIn: true, selectedResult: true }
-                }}
-                // onClick={props.setSelectedResult(data.imdbID)}
-                key={i}
-              >
-                <div className="card col-12 text-center" data-id={data.imdbID}>
-                  <h6 className="bf">{data.Title}</h6>
-                  <img
-                    src={data.Poster}
-                    alt={data.Title}
-                    className="col-11 mb-1 img-fluid"
-                  />
+              <div class="col mb-2 mt-2">
+                <div className="card h-100 text-center mt pb-2 pt-2" data-id={data.imdbID}>
+                  <Link
+                    className="col-12"
+                    to={{
+                      pathname: "/movie/" + data.imdbID,
+                      state: { isLoggedIn: true, selectedResult: true }
+                    }}
+                    // onClick={props.setSelectedResult(data.imdbID)}
+                    key={i}
+                  >
+                    <h6 className="bf">{data.Title}</h6>
+                    <img
+                      src={data.Poster}
+                      alt={data.Title}
+                      className="card-img-top img-flex mb-1 "
+                    />
+                  </Link>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
-        </div>
-      </div>
+     
     );
   }
 }

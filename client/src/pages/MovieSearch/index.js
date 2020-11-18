@@ -17,8 +17,8 @@ function MovieSearch(props) {
   }
 
   return (
-    <div className="d-flex justify-content-center minH-6">
-      <div className="card col-8 minH-8-5 bc-lg">
+    <div className="d-flex justify-content-center">
+      <div className="card col-sm-12 col-md-10 minH-8-5 bc-lg">
         <form>
           <div className="form-group mt-3">
             <label htmlFor="inputMovie" className="bf">
