@@ -56,6 +56,17 @@ function DropMenu(props) {
                       Movie Lists
                     </Link>
                   </li>
+                  <li className="card mb-1 pt-1 pb-1 pl-2">
+                    <Link
+                      className="bf"
+                      to={{
+                        pathname: "/map",
+                        state: { isLoggedIn: true, user: true }
+                      }}
+                    >
+                      Find Nearby Theaters
+                    </Link>
+                  </li>
                   <li className="card pt-1 pb-1 pl-2">
                     <Link
                       className="bf"

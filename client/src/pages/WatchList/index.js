@@ -10,7 +10,7 @@ function WatchList(props) {
 
   return (
     <div className="d-flex justify-content-center">
-      <div className="card  col-sm-12 col-md-8 ">
+      <div className="card  col-sm-12 col-md-10 ">
         <div className="d-flex justify-content-around">
           <ToWatch
             btnClick={props.btnClick}
