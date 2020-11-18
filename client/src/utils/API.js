@@ -1,8 +1,6 @@
 import axios from "axios";
 // import Map_PW from "../pages/Map/MAP_PW";
 
-require("dotenv").config();
-
 export default {
   register: function (registerUsername, registerEmail, registerPassword) {
     return axios({
