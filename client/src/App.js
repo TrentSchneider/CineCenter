@@ -17,6 +17,7 @@ import WatchList from "./pages/WatchList";
 import MovieSearch from "./pages/MovieSearch";
 import MovieInfo from "./pages/MovieInfo";
 import MapWrapper from "./pages/MapWrapper";
+import Maintenance from "./pages/Maintenance";
 import API from "./utils/API";
 
 function App() {
@@ -147,7 +148,8 @@ function App() {
                 />
               </Route>
               <Route exact path="/map">
-                <MapWrapper API={API} />
+                {/* <MapWrapper API={API} /> */}
+                <Maintenance/>
               </Route>
             </Switch>
           </div>
@@ -212,7 +214,8 @@ function App() {
                 />
               </Route>
               <Route exact path="/map">
-                <MapWrapper API={API} />
+                {/* <MapWrapper API={API} /> */}
+                <Maintenance/>
               </Route>
             </Switch>
           </div>
